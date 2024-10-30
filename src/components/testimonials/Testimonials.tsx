@@ -68,6 +68,7 @@ export default function Testimonials() {
     useEffect(() => {
         const autoPlayTimer = setInterval(nextTestimonial, 5000)
         return () => clearInterval(autoPlayTimer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -84,7 +85,7 @@ export default function Testimonials() {
                         subtitle="Read about the experiences of those who have trusted us with their healthcare needs."
                     />
                 </motion.div>
-                <div className="relative max-w-4xl mx-auto">
+                <div className="relative w-72 md:max-w-2xl lg:max-w-4xl mx-auto">
                     <div className="overflow-hidden">
                         <div
                             className="flex transition-transform duration-500 ease-in-out"
@@ -106,7 +107,7 @@ export default function Testimonials() {
                                             <div className="flex items-center gap-3 mb-4">
                                                 <Quote className="w-8 h-8 text-[#DB2777]" />
                                                 <div>
-                                                    <h3 className="text-2xl font-bold text-[#DB2777] font-serif italic">{testimonial.name}</h3>
+                                                    <h3 className="text-base md:text-2xl font-bold text-[#DB2777] font-serif italic">{testimonial.name}</h3>
                                                     <p className="text-[#BE185D]">{testimonial.role}</p>
                                                 </div>
                                             </div>

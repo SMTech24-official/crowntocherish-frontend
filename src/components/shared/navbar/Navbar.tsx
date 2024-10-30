@@ -7,7 +7,6 @@ import Logo from "../logo/Logo"
 import { usePathname, useRouter } from "next/navigation"
 
 export default function Navbar() {
-    const [activeNav, setActiveNav] = useState('home')
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const router = useRouter()
@@ -32,7 +31,6 @@ export default function Navbar() {
 
     const handleNavClick = (navId: string, link: string) => {
         router.push(`${link}`)
-        setActiveNav(navId)
         setIsMobileMenuOpen(false)
     }
 

@@ -44,7 +44,7 @@ export default function Navbar() {
                 <div className="w-full h-full bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15]" />
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container ">
                 <div className="flex items-center justify-between">
                     {/* Logo Section with curved yellow accent */}
                     <Logo />

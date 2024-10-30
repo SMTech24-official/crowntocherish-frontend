@@ -47,6 +47,7 @@ const config: Config = {
   plugins: [require("tailwindcss-animate"),
 	function ({ addComponents }: PluginAPI) {
 		addComponents({
+
 		  ".section-gap": {
 			  paddingTop: "2rem",  // Default padding for all screen sizes
 			  paddingBottom: "2rem", // Default padding for all screen sizes

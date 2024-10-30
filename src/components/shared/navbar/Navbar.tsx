@@ -1,11 +1,128 @@
-import React from 'react';
+'use client'
 
-const Navbar = () => {
+import { useState, useEffect } from "react"
+import {  Menu, X} from "lucide-react"
+import { cn } from "@/lib/utils"
+import Logo from "../logo/Logo"
+
+export default function Navbar() {
+    const [activeNav, setActiveNav] = useState('home')
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
+
+    const navLinks = [
+        { id: 'home', label: 'Home' },
+        { id: 'about-us', label: 'About Us' },
+        { id: 'how-it-Works', label: 'How It Works' },
+        { id: 'services', label: 'Services' },
+        { id: 'disclaimer', label: 'Disclaimer' },
+        { id: 'contact-Us', label: 'Contact Us' },
+    ]
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20)
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    const handleNavClick = (navId: string) => {
+        setActiveNav(navId)
+        setIsMobileMenuOpen(false)
+    }
+
     return (
-        <div>
-            navbar
-        </div>
-    );
-};
+        <nav className={cn(
+            "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+            scrolled
+                ? "bg-gradient-to-tr from-[#e0afb9] via-[#FECDD3] to-[#FECDD3] shadow-lg py-2"
+                : "bg-gradient-to-tr from-[#e0afb9]/90 via-[#FECDD3]/90 to-[#FFE4E6]/90 backdrop-blur-sm py-4"
+        )}>
+            {/* Yellow curved accent at the top */}
+            <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
+                <div className="w-full h-full bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15]" />
+            </div>
 
-export default Navbar;
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between">
+                    {/* Logo Section with curved yellow accent */}
+                    <Logo />
+
+                    {/* Desktop Navigation Links */}
+                    <div className="hidden md:block">
+                        <div className="flex items-center space-x-1">
+                            {navLinks.map((link) => {
+                                return (
+                                    <button
+                                        key={link.id}
+                                        onClick={() => handleNavClick(link.id)}
+                                        className={cn(
+                                            "px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-2 relative group overflow-hidden",
+                                            activeNav === link.id
+                                                ? "bg-button_bg text-white"
+                                                : "text-text_default hover:bg-gradient-to-r hover:from-[#FEF08A]/20 hover:via-[#FDE047]/20 hover:to-[#FACC15]/20"
+                                        )}
+                                    >
+                                        {link.label}
+                                        {activeNav !== link.id && (
+                                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15]" />
+                                            </div>
+                                        )}
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <div className="md:hidden">
+                        <button
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="relative inline-flex items-center justify-center p-2 rounded-md text-[#BE185D] hover:bg-gradient-to-r hover:from-[#FEF08A]/20 hover:via-[#FDE047]/20 hover:to-[#FACC15]/20 focus:outline-none"
+                            aria-expanded={isMobileMenuOpen}
+                            aria-label="Toggle menu"
+                        >
+                            {isMobileMenuOpen ? (
+                                <X className="block h-6 w-6 transition-transform duration-200 hover:rotate-90" aria-hidden="true" />
+                            ) : (
+                                <Menu className="block h-6 w-6 transition-transform duration-200 hover:scale-110" aria-hidden="true" />
+                            )}
+                        </button>
+                    </div>
+                </div>
+
+                {/* Mobile Menu */}
+                <div
+                    className={cn(
+                        "md:hidden transition-all duration-300 ease-in-out overflow-hidden",
+                        isMobileMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+                    )}
+                >
+                    <div className="px-2 pt-2 pb-3 space-y-1">
+                        {navLinks.map((link) => {
+                            return (
+                                <button
+                                    key={link.id}
+                                    onClick={() => handleNavClick(link.id)}
+                                    className={cn(
+                                        "flex items-center gap-3 w-full text-left px-4 py-3 rounded-md text-base font-medium transition-all duration-200 group relative overflow-hidden",
+                                        activeNav === link.id
+                                            ? "bg-[#DB2777] text-white"
+                                            : "text-[#BE185D] hover:bg-gradient-to-r hover:from-[#FEF08A]/20 hover:via-[#FDE047]/20 hover:to-[#FACC15]/20"
+                                    )}
+                                >
+                                    {link.label}
+                                    {activeNav !== link.id && (
+                                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15] opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                                    )}
+                                </button>
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    )
+}

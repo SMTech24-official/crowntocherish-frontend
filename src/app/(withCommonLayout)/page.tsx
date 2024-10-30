@@ -2,7 +2,7 @@
 const page = () => {
   return (
     <>
-      <div>
+      <div className="h-[300vh]">
         page from with common layout
       </div>
     </>

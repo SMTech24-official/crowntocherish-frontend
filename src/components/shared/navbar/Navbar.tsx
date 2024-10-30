@@ -112,13 +112,13 @@ export default function Navbar() {
                                     onClick={() => handleNavClick(link.id, link.link)}
                                     className={cn(
                                         "flex items-center gap-3 w-full text-left px-4 py-3 rounded-md text-base font-medium transition-all duration-200 group relative overflow-hidden",
-                                        activeNav === link.id
+                                        pathName === link.link
                                             ? "bg-[#DB2777] text-white"
                                             : "text-[#BE185D] hover:bg-gradient-to-r hover:from-[#FEF08A]/20 hover:via-[#FDE047]/20 hover:to-[#FACC15]/20"
                                     )}
                                 >
                                     {link.label}
-                                    {activeNav !== link.id && (
+                                    {pathName !== link.link && (
                                         <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15] opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                                     )}
                                 </button>

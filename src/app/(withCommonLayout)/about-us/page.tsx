@@ -44,7 +44,7 @@ export default function AboutUsPage() {
         </motion.div>
 
         {/* About Us Grid */}
-        <div className="grid gap-8 md:grid-cols-2 items-start">
+        <div className="grid gap-8 lg:grid-cols-2 items-start">
           {/* Mission and Vision */}
           <motion.div
             variants={itemVariants}

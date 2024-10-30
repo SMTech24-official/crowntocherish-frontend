@@ -63,7 +63,7 @@ export default function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-[#BE185D] hover:text-[#DB2777] transition-colors duration-200"
+                  className="text-pink-500 hover:text-[#DB2777] transition-colors duration-200"
                   aria-label={link.label}
                 >
                   <link.icon className="h-6 w-6" />
@@ -96,7 +96,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm hover:text-button_hover_bg hover:underline transition-colors duration-200"
+                      className=" hover: hover:underline transition-colors duration-200"
                     >
                       {link.label}
                     </a>

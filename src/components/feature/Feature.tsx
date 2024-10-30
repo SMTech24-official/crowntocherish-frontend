@@ -1,7 +1,8 @@
+'use client'
 
+import { motion } from "framer-motion"
 import SectionHeader from "../shared/sectionHeader/SectionHeader"
 import { StylishCard } from "../shared/styllishCard/StylishCard"
-
 import {
   Stethoscope,
   Heart,
@@ -10,7 +11,6 @@ import {
   Users,
   Award
 } from "lucide-react"
-
 
 export const features = [
   {
@@ -45,33 +45,76 @@ export const features = [
   }
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+}
 
-
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+}
 
 export default function Feature() {
-
-
   return (
-    <section className="">
-      <div className="container mx-auto px-4  border border-red-400 section-gap">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+      className=""
+    >
+      <div className="container section-gap">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <SectionHeader 
+            title="Key Features & Benefits" 
+            subtitle="Discover why our healthcare services stand out with these exceptional features designed to provide you with the best medical care experience."
+          />
+        </motion.div>
 
-        <SectionHeader title="Key Features & Benefits "  subtitle="Discover why our healthcare services stand out with these exceptional features designed to provide you with the best medical care experience."/>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <motion.div 
+          variants={containerVariants}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
+        >
           {features?.map((feature, index) => (
-            <StylishCard
+            <motion.div
               key={index}
-              title={feature.title}
-              description={feature.description}
-              background="bg-gradient-to-tr from-[#FFE4E6] via-[#FECDD3] to-[#FFE4E6]"
-              titleColor="text-[#DB2777]"
-              textColor="text-[#BE185D]"
-              buttonColor="bg-[#DB2777]"
-              buttonHoverColor="hover:bg-[#BE185D]"
-              icon={feature.icon}
-            />
+              variants={cardVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <StylishCard
+                title={feature.title}
+                description={feature.description}
+                background="bg-gradient-to-tr from-[#FFE4E6] via-[#FECDD3] to-[#FFE4E6]"
+                titleColor="text-[#DB2777]"
+                textColor="text-[#BE185D]"
+                buttonColor="bg-[#DB2777]"
+                buttonHoverColor="hover:bg-[#BE185D]"
+                icon={feature.icon}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }

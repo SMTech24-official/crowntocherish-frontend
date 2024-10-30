@@ -14,7 +14,7 @@ export function StylishCard({
     icon
 }: CardProps) {
     return (
-        <div className={`relative w-full max-w-md p-6 ${background} rounded-xl shadow-lg overflow-hidden hover:scale-[1.] transition-all duration-300`}>
+        <div className={`relative w-full max-w-md p-6 ${background} rounded-xl shadow-lg overflow-hidden hover:scale-[1.05] transition-all duration-300`}>
             <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0,100 Q100,50 200,100 T400,100" fill="none" stroke="#FEF08A" strokeWidth="2" />
                 <path d="M0,200 Q100,150 200,200 T400,200" fill="none" stroke="#FEF08A" strokeWidth="2" />
@@ -31,7 +31,7 @@ export function StylishCard({
 
 
                 <Button
-                    className={`${buttonColor} ${buttonHoverColor} text-white transition-colors duration-200`}
+                    className={`${buttonColor} ${buttonHoverColor} hover:text-[#DB2777] text-white transition-colors duration-200 border-[#ff4699]  hover:bg-white`}
                 >
                     Learn More
                 </Button>

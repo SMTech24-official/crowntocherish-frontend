@@ -1,5 +1,5 @@
 'use client'
-
+import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react"
@@ -71,9 +71,19 @@ export default function Testimonials() {
     }, [])
 
     return (
-        <section className="section-gap">
+        <section className="section-gap ">
             <div className="container mx-auto px-4">
-                <SectionHeader title="What Our Patients Say" subtitle="Read about the experiences of those who have trusted us with their healthcare needs." />
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <SectionHeader
+                        title="What Our Patients Say"
+                        subtitle="Read about the experiences of those who have trusted us with their healthcare needs."
+                    />
+                </motion.div>
                 <div className="relative max-w-4xl mx-auto">
                     <div className="overflow-hidden">
                         <div
@@ -121,20 +131,20 @@ export default function Testimonials() {
 
                     <Button
                         onClick={previousTestimonial}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-2 shadow-lg"
+                        className="absolute -left-6 top-1/2 -translate-y-1/2 -translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
                         disabled={isAnimating}
                         aria-label="Previous testimonial"
                     >
-                        <ChevronLeft className="w-6 h-6" />
+                        <ChevronLeft className="w-8 h-8" />
                     </Button>
 
                     <Button
                         onClick={nextTestimonial}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-2 shadow-lg"
+                        className="absolute -right-6 top-1/2 -translate-y-1/2 translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
                         disabled={isAnimating}
                         aria-label="Next testimonial"
                     >
-                        <ChevronRight className="w-6 h-6" />
+                        <ChevronRight className="w-8 h-8" />
                     </Button>
 
                     <div className="flex justify-center mt-6 gap-2">

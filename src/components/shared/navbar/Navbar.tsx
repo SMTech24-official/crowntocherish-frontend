@@ -1,22 +1,25 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import {  Menu, X} from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Logo from "../logo/Logo"
+import { usePathname, useRouter } from "next/navigation"
 
 export default function Navbar() {
     const [activeNav, setActiveNav] = useState('home')
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
+    const router = useRouter()
+    const pathName = usePathname();
 
     const navLinks = [
-        { id: 'home', label: 'Home' },
-        { id: 'about-us', label: 'About Us' },
-        { id: 'how-it-Works', label: 'How It Works' },
-        { id: 'services', label: 'Services' },
-        { id: 'disclaimer', label: 'Disclaimer' },
-        { id: 'contact-Us', label: 'Contact Us' },
+        { link: "/", id: 'home', label: 'Home' },
+        { link: "/about-us", id: 'about-us', label: 'About Us' },
+        { link: "/how-it-works", id: 'how-it-Works', label: 'How It Works' },
+        { link: "/services", id: 'services', label: 'Services' },
+        { link: "/disclaimer", id: 'disclaimer', label: 'Disclaimer' },
+        { link: "/contact-us", id: 'contact-us', label: 'Contact Us' },
     ]
 
     useEffect(() => {
@@ -27,7 +30,8 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    const handleNavClick = (navId: string) => {
+    const handleNavClick = (navId: string, link: string) => {
+        router.push(`${link}`)
         setActiveNav(navId)
         setIsMobileMenuOpen(false)
     }
@@ -56,16 +60,16 @@ export default function Navbar() {
                                 return (
                                     <button
                                         key={link.id}
-                                        onClick={() => handleNavClick(link.id)}
+                                        onClick={() => handleNavClick(link.id, link.link)}
                                         className={cn(
                                             "px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-2 relative group overflow-hidden",
-                                            activeNav === link.id
+                                            pathName === link.link
                                                 ? "bg-button_bg text-white"
                                                 : "text-text_default hover:bg-gradient-to-r hover:from-[#FEF08A]/20 hover:via-[#FDE047]/20 hover:to-[#FACC15]/20"
                                         )}
                                     >
                                         {link.label}
-                                        {activeNav !== link.id && (
+                                        {pathName !== link.link && (
                                             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15]" />
                                             </div>
@@ -105,7 +109,7 @@ export default function Navbar() {
                             return (
                                 <button
                                     key={link.id}
-                                    onClick={() => handleNavClick(link.id)}
+                                    onClick={() => handleNavClick(link.id, link.link)}
                                     className={cn(
                                         "flex items-center gap-3 w-full text-left px-4 py-3 rounded-md text-base font-medium transition-all duration-200 group relative overflow-hidden",
                                         activeNav === link.id

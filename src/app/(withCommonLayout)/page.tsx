@@ -1,10 +1,13 @@
+import Feature from "@/components/feature/Feature";
+import Hero from "@/components/hero/Hero";
+import Testimonials from "@/components/testimonials/Testimonials";
 
 const page = () => {
   return (
     <>
-      <div className="h-[300vh]">
-        page from with common layout
-      </div>
+      <Hero />
+      <Feature />
+      <Testimonials />
     </>
   );
 };

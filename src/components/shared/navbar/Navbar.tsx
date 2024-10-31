@@ -85,7 +85,10 @@ export default function Navbar() {
                         <AiButton />
                         <div className="lg:hidden">
                             <button
-                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                onClick={() => {
+                                    setScrolled(!scrolled);
+                                    setIsMobileMenuOpen(!isMobileMenuOpen);
+                                }}
                                 className="relative inline-flex items-center justify-center p-2 rounded-md text-[#BE185D] hover:bg-gradient-to-r hover:from-[#FEF08A]/20 hover:via-[#FDE047]/20 hover:to-[#FACC15]/20 focus:outline-none"
                                 aria-expanded={isMobileMenuOpen}
                                 aria-label="Toggle menu"

@@ -41,7 +41,7 @@ export default function Hero() {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 mt-20 md:mt-10">
+      <div className="container py-16 md:py-24 mt-20 md:mt-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content Section */}
           <motion.div

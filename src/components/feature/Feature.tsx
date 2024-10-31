@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import SectionHeader from "../shared/sectionHeader/SectionHeader"
-import { StylishCard } from "../shared/styllishCard/StylishCard"
+import { StylishCard } from "../styllishCard/StylishCard"
 import {
   Stethoscope,
   Heart,

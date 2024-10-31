@@ -40,7 +40,7 @@ export default function AboutUsPage() {
       >
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-12">
-          <SectionHeader title="About ExplainMyMeds" subtitle="Simplifying medical information for everyone" />
+          <SectionHeader toolText="" title="About ExplainMyMeds" subtitle="Simplifying medical information for everyone" />
         </motion.div>
 
         {/* About Us Grid */}
@@ -165,7 +165,7 @@ export default function AboutUsPage() {
             whileTap={{ scale: 0.95 }}
           >
             <Button
-              className="bg-[#DB2777] hover:bg-[#BE185D] text-white"
+              className="bg-button_bg hover:bg-button_hover_bg text-white"
               asChild
             >
               <Link href="/services">Explore Our Services</Link>

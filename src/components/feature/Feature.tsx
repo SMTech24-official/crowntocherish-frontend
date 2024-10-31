@@ -83,13 +83,14 @@ export default function Feature() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <SectionHeader 
-            title="Key Features & Benefits" 
-            subtitle="Discover why our healthcare services stand out with these exceptional features designed to provide you with the best medical care experience."
+          <SectionHeader
+            toolText="AI-Powered Health Insights"
+            title="Key Features & Benefits"
+            subtitle="Experience personalized, accurate, and reliable healthcare guidance tailored just for you. Our AI-driven insights offer clarity and support in understanding your health needs, ensuring a comprehensive and trustworthy experience at every step."
           />
         </motion.div>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
         >
@@ -106,8 +107,9 @@ export default function Feature() {
                 description={feature.description}
                 background="bg-gradient-to-tr from-[#FFE4E6] via-[#FECDD3] to-[#FFE4E6]"
                 titleColor="text-[#DB2777]"
-                textColor="text-[#BE185D]"
+                textColor="text-text_default"
                 buttonColor="bg-[#DB2777]"
+                height="h-[340px]"
                 buttonHoverColor="hover:bg-[#BE185D]"
                 icon={feature.icon}
               />

@@ -50,7 +50,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center rounded-full border border-[#DB2777]/20 bg-yellow-200/40 px-3 my-2 py-1 text-sm text-[#DB2777] shadow-sm">
+            <div className="inline-flex items-center rounded-full border border-[#DB2777]/20 bg-yellow-200/40 px-3 my-2 py-1 text-sm text-text_title shadow-sm">
               <Sparkles className="mr-2 h-4 w-4" />
               AI-Powered Medical Assistant
             </div>
@@ -97,8 +97,8 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-[#FEF08A] via-[#FDE047] to-[#FACC15] rounded-full opacity-20 blur-3xl" />
               <div className="relative z-10 w-full h-full rounded-2xl bg-white/50 backdrop-blur-sm p-8 flex items-center justify-center">
                 <div className="text-center">
-                  <Brain className="w-24 h-24 mx-auto mb-6 text-[#DB2777]" />
-                  <p className="text-[#BE185D] font-medium">AI-Powered Medication Information</p>
+                  <Brain className="w-24 h-24 mx-auto mb-6 text-text_title" />
+                  <p className="text-text-title font-medium">AI-Powered Medication Information</p>
                 </div>
               </div>
               {/* <Image src={banner} alt="Banner Image" className="w-full h=full"/> */}
@@ -111,7 +111,8 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-20"
+
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-10"
         >
           {benefits.map((benefit, index) => (
             <motion.div
@@ -119,12 +120,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 + index * 0.1 }}
-              className="bg-white/50 backdrop-blur-sm rounded-xl p-6 shadow-md shadow-yellow-100"
+              className="bg-white/50 backdrop-blur-sm rounded-xl z-30 group relative p-6 shadow-md shadow-yellow-100"
             >
-              <div className="w-12 h-12 bg-[#DB2777]/10 rounded-full flex items-center justify-center mb-4">
-                <div className="text-[#DB2777]">{benefit.icon}</div>
+              <div className="w-12 h-12 rounded-full bg-[#DB2777]/10  group-hover:bg-secondary flex items-center justify-center mb-4">
+                <div className="text-text_title">{benefit.icon}</div>
               </div>
-              <h3 className={`text-xl font-semibold text-[#BE185D] mb-2 ${poppins.className}`}>
+              <h3 className={`text-xl font-semibold text-text-title mb-2 ${poppins.className}`}>
                 {benefit.title}
               </h3>
               <p className=" text-text_default">{benefit.description}</p>

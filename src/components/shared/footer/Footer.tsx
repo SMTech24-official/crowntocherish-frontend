@@ -45,7 +45,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gradient-to-tr from-[#e0afb9] via-[#FECDD3] to-[#FECDD3] text-[#BE185D]">
+    <footer className="bg-gradient-to-tr from-[#e0afb9] via-[#FECDD3] to-[#FECDD3] ">
       {/* Yellow curved accent at the top */}
       <div className="h-1 overflow-hidden">
         <div className="w-full h-full bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15]" />
@@ -55,7 +55,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <Logo />
-            <p className="mt-4 text-sm">
+            <p className="mt-4 text-text_default">
               Providing exceptional services and solutions to meet your needs. Your satisfaction is our priority.
             </p>
             <div className="mt-6 flex space-x-4">
@@ -63,7 +63,7 @@ export default function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-pink-500 hover:text-[#DB2777] transition-colors duration-200"
+                  className="text-text_default hover:text-text_title transition-colors duration-200"
                   aria-label={link.label}
                 >
                   <link.icon className="h-6 w-6" />
@@ -96,7 +96,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className=" hover: hover:underline transition-colors duration-200"
+                      className="text-text_default hover:text-text_title transition-colors duration-200"
                     >
                       {link.label}
                     </a>

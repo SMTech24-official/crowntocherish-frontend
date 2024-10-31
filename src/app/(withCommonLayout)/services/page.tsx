@@ -12,9 +12,7 @@ import {
   ArrowRight,
   LucideIcon
 } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from "next/link"
 import SectionHeader from "@/components/shared/sectionHeader/SectionHeader"
 
 const containerVariants = {
@@ -211,7 +209,7 @@ const ServicesPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Call to Action
         <motion.div
           variants={itemVariants}
           className="text-center"
@@ -233,7 +231,7 @@ const ServicesPage: React.FC = () => {
               <Link href="/start">Start Now</Link>
             </Button>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </div>
   )

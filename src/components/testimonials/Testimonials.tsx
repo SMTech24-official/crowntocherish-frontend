@@ -68,7 +68,7 @@ export default function Testimonials() {
     useEffect(() => {
         const autoPlayTimer = setInterval(nextTestimonial, 5000)
         return () => clearInterval(autoPlayTimer)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -81,9 +81,11 @@ export default function Testimonials() {
                     transition={{ duration: 0.6 }}
                 >
                     <SectionHeader
+                        toolText="Real Stories from Real Patients"
                         title="What Our Patients Say"
-                        subtitle="Read about the experiences of those who have trusted us with their healthcare needs."
+                        subtitle="Read about the experiences of those who have trusted us with their healthcare needs. Discover how our dedicated care has positively impacted their health journeys."
                     />
+
                 </motion.div>
                 <div className="relative max-w-[300px] md:max-w-2xl lg:max-w-4xl mx-auto">
                     <div className="overflow-hidden">
@@ -105,20 +107,20 @@ export default function Testimonials() {
 
                                         <div className="relative z-10">
                                             <div className="flex items-center gap-3 mb-4">
-                                                <Quote className="w-8 h-8 text-[#DB2777]" />
+                                                <Quote className="w-8 h-8 text-white" />
                                                 <div>
-                                                    <h3 className="text-base md:text-2xl font-bold text-[#DB2777] font-serif italic">{testimonial.name}</h3>
-                                                    <p className="text-[#BE185D]">{testimonial.role}</p>
+                                                    <h3 className="text-base md:text-2xl font-bold text-text_title font-serif">{testimonial.name}</h3>
+                                                    <p className="text-white">{testimonial.role}</p>
                                                 </div>
                                             </div>
 
-                                            <div className="flex mb-4">
+                                            <div className="flex mb-4 gap-1">
                                                 {[...Array(testimonial.rating)].map((_, i) => (
-                                                    <Star key={i} className="w-5 h-5 fill-[#FDE047] text-[#FDE047]" />
+                                                    <Star key={i} className="fill-button_bg stroke-none" />
                                                 ))}
                                             </div>
 
-                                            <p className="text-[#BE185D] mb-6 italic">&quot;{testimonial.comment}&quot;</p>
+                                            <p className="text-text-text-text_default mb-6 ">&quot;{testimonial.comment}&quot;</p>
                                         </div>
 
                                         <svg className="absolute bottom-0 right-0 w-32 h-32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">

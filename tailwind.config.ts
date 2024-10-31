@@ -25,6 +25,7 @@ const config: Config = {
         text_default: "#000000",
         button_bg: "#DB2777",
         button_hover_bg: "#BE185D",
+        secondary: "#ffe88c",
         section_bg: "#FFE4E6",
         nav_bg: "#e0adb5",
         background: "var(--background)",

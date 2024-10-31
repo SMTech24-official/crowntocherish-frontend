@@ -1,10 +1,14 @@
 import Image from "next/image";
-import logo from "@/assets/logo/logo.jpeg"
+import logo from "@/assets/logo/29536746657.png"
+import Link from "next/link";
 const Logo = () => {
     return (
-        <div className="w-20 h-20 ">
-            <Image src={logo} alt="Company Logo" objectFit="fit"/>
-        </div>
+        <Link href={"/"}>
+            <div className="w-24 h-24 ">
+                <Image src={logo} alt="Company Logo" objectFit="fit" />
+            </div>
+        </Link>
+
     );
 };
 

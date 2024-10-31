@@ -22,7 +22,7 @@ const config: Config = {
       },
       colors: {
         text_title: "#DB2777",
-        text_default: "#BE185D",
+        text_default: "#000000",
         button_bg: "#DB2777",
         button_hover_bg: "#BE185D",
         section_bg: "#FFE4E6",

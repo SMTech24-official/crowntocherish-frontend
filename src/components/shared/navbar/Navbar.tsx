@@ -40,7 +40,7 @@ export default function Navbar() {
             "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
             scrolled
                 ? "bg-gradient-to-tr from-[#e0afb9] via-[#FECDD3] to-[#FECDD3] shadow-lg py-2"
-                : "bg-gradient-to-tr from-[#e0afb9]/90 via-[#FECDD3]/90 to-[#FFE4E6]/90 backdrop-blur-sm py-4"
+                : " backdrop-blur-sm py-4"
         )}>
             {/* Yellow curved accent at the top */}
             {/* <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
@@ -69,11 +69,11 @@ export default function Navbar() {
                                             )}
                                         >
                                             {link.label}
-                                            {pathName !== link.link && (
+                                            {/* {pathName !== link.link && (
                                                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                                     <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15]" />
                                                 </div>
-                                            )}
+                                            )} */}
                                         </button>
                                     )
                                 })}

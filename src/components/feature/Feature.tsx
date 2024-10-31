@@ -109,7 +109,7 @@ export default function Feature() {
                 titleColor="text-[#DB2777]"
                 textColor="text-text_default"
                 buttonColor="bg-[#DB2777]"
-                height="h-[340px]"
+                height="md:h-[340px]"
                 buttonHoverColor="hover:bg-[#BE185D]"
                 icon={feature.icon}
               />

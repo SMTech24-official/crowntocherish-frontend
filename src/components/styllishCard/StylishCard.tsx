@@ -24,7 +24,7 @@ export function StylishCard({
             <div className="relative z-10 flex flex-col h-full justify-between">
                 <div className="flex flex-col items-center gap-3 mb-4">
                     {icon && <div className={`${titleColor}`}>{icon}</div>}
-                    <h2 className={`text-3xl font-semibold ${titleColor} ${poppins.className}`}>{title}</h2>
+                    <h2 className={`text-2xl md:text-3xl font-semibold ${titleColor} ${poppins.className}`}>{title}</h2>
                 </div>
 
                 <p className={`${textColor} mb-7 flex-grow`}>{description}</p>

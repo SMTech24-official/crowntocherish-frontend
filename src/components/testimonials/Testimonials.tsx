@@ -87,7 +87,7 @@ export default function Testimonials() {
                     />
 
                 </motion.div>
-                <div className="relative max-w-[300px] md:max-w-2xl lg:max-w-4xl mx-auto">
+                <div className="relative  md:max-w-2xl lg:max-w-4xl mx-auto">
                     <div className="overflow-hidden">
                         <div
                             className="flex transition-transform duration-500 ease-in-out"

@@ -143,7 +143,7 @@ export default function ContactPage() {
             {/* Support Categories */}
             <motion.div
               variants={containerVariants}
-              className="grid gap-4 md:grid-cols-2"
+              className="grid gap-4  lg:grid-cols-2"
             >
               <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
                 <Card className="h-full">

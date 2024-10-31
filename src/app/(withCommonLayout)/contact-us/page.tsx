@@ -1,7 +1,7 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from "framer-motion"
-import { Mail, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import Link from "next/link"
 import SectionHeader from "@/components/shared/sectionHeader/SectionHeader"
+import emailjs from '@emailjs/browser'
+import { Mail, MapPin, Phone } from 'lucide-react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -33,10 +35,62 @@ const itemVariants = {
 }
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target
+    setFormData(prevData => ({
+      ...prevData,
+      [id]: value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const result = await emailjs.send(
+        'service_qyac2ww', 'template_an21w53',
+        {
+          from_name: `${formData.firstName} ${formData.lastName}`,
+          from_email: formData.email,
+          phone: formData.phone,
+          message: formData.message
+        },
+        'd5dJg25GGc6KH0ycL'
+      )
+
+      console.log(result.text)
+      setSubmitStatus('success')
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        message: ''
+      })
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
-    <div className="min-h-screen  section-gap lg:mt-0  md:mt-20 mt-28">
+    <div className="min-h-screen section-gap lg:mt-0 md:mt-20 mt-28">
       <motion.div
-        className="container "
+        className="container"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -128,7 +182,7 @@ export default function ContactPage() {
                 <CardTitle className="text-text_title">Send us a Message</CardTitle>
               </CardHeader>
               <CardContent>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid gap-6 md:grid-cols-2">
                     <motion.div
                       className="space-y-2"
@@ -136,7 +190,13 @@ export default function ContactPage() {
                       whileHover={{ scale: 1.02 }}
                     >
                       <Label htmlFor="firstName">First name</Label>
-                      <Input id="firstName" placeholder="Enter your first name" />
+                      <Input
+                        id="firstName"
+                        placeholder="Enter your first name"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </motion.div>
                     <motion.div
                       className="space-y-2"
@@ -144,7 +204,13 @@ export default function ContactPage() {
                       whileHover={{ scale: 1.02 }}
                     >
                       <Label htmlFor="lastName">Last name</Label>
-                      <Input id="lastName" placeholder="Enter your last name" />
+                      <Input
+                        id="lastName"
+                        placeholder="Enter your last name"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </motion.div>
                   </div>
                   <motion.div
@@ -153,7 +219,14 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.02 }}
                   >
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="Enter your email" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
                   </motion.div>
                   <motion.div
                     className="space-y-2"
@@ -161,7 +234,13 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.02 }}
                   >
                     <Label htmlFor="phone">Phone number</Label>
-                    <Input id="phone" type="tel" placeholder="Enter your phone number" />
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                    />
                   </motion.div>
                   <motion.div
                     className="space-y-2"
@@ -173,6 +252,9 @@ export default function ContactPage() {
                       id="message"
                       placeholder="How can we help?"
                       className="min-h-[120px]"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
                     />
                   </motion.div>
                   <motion.div
@@ -182,10 +264,17 @@ export default function ContactPage() {
                     <Button
                       className="w-full bg-[#DB2777] hover:bg-[#BE185D]"
                       type="submit"
+                      disabled={isSubmitting}
                     >
-                      Send Message
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </motion.div>
+                  {submitStatus === 'success' && (
+                    <p className="text-green-600 text-center">Message sent successfully!</p>
+                  )}
+                  {submitStatus === 'error' && (
+                    <p className="text-red-600 text-center">Error sending message. Please try again.</p>
+                  )}
                   <p className="text-sm text-text_default text-center">
                     By contacting us, you agree to our{" "}
                     <Link href="/terms" className="text-[#DB2777] hover:text-[#BE185D] underline">

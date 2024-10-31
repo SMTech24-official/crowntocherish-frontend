@@ -85,7 +85,7 @@ export default function Testimonials() {
                         subtitle="Read about the experiences of those who have trusted us with their healthcare needs."
                     />
                 </motion.div>
-                <div className="relative w-72 md:max-w-2xl lg:max-w-4xl mx-auto">
+                <div className="relative max-w-[300px] md:max-w-2xl lg:max-w-4xl mx-auto">
                     <div className="overflow-hidden">
                         <div
                             className="flex transition-transform duration-500 ease-in-out"
@@ -132,7 +132,7 @@ export default function Testimonials() {
 
                     <Button
                         onClick={previousTestimonial}
-                        className="absolute -left-6 top-1/2 -translate-y-1/2 -translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
+                        className="absolute hidden md:block -left-6 top-1/2 -translate-y-1/2 -translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
                         disabled={isAnimating}
                         aria-label="Previous testimonial"
                     >
@@ -141,7 +141,7 @@ export default function Testimonials() {
 
                     <Button
                         onClick={nextTestimonial}
-                        className="absolute -right-6 top-1/2 -translate-y-1/2 translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
+                        className="absolute hidden md:block -right-6 top-1/2 -translate-y-1/2 translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
                         disabled={isAnimating}
                         aria-label="Next testimonial"
                     >

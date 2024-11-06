@@ -12,12 +12,12 @@ const config: Config = {
     extend: {
       container: {
         center: true, // Centers the container by default
-        padding: "2rem", // Adds padding around the container
+        padding: "2rem",
         screens: {
-          sm: "100%", // Customize container width on small screens
-          md: "100%", // Customize container width on medium screens
-          lg: "1024px", // Set custom width for large screens
-          xl: "1480px", // Set custom width for extra-large screens
+          sm: '100%', // Customize container width on small screens
+          md: '100%', // Customize container width on medium screens
+          lg: '1024px', // Set custom width for large screens
+          xl: '1480px', // Set custom width for extra-large screens
         },
       },
       colors: {
@@ -27,7 +27,7 @@ const config: Config = {
         button_hover_bg: "#BE185D",
         secondary: "#ffe88c",
         // section_bg: "#FFE4E6",
-        section_bg: "#0000000",
+        section_bg: "#FFFFFF",
         nav_bg: "#e0adb5",
         background: "var(--background)",
         foreground: "var(--foreground)",

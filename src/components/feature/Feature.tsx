@@ -9,41 +9,53 @@ import {
   Clock,
   Shield,
   Users,
-  Award
+  Award,
+  Lightbulb,
+  Zap,
+  Rocket,
+  Star
 } from "lucide-react"
+import { useState } from "react"
 
-export const features = [
-  {
-    title: "24/7 Support",
-    description: "Round-the-clock medical assistance and support from our dedicated healthcare team, ensuring that you have access to care whenever you need it, whether it's for urgent queries or ongoing health management.",
-    icon: <Clock className="w-8 h-8" />
+const features = [
+  { 
+    icon: Lightbulb, 
+    title: 'Innovative Ideas', 
+    description: 'Cutting-edge solutions for modern problems',
+    details: "Our team of experts constantly pushes the boundaries of what's possible, bringing you the latest and most innovative features in the industry."
   },
-  {
-    title: "Expert Care",
-    description: "Get expert medical guidance and support from our team of healthcare professionals, who are specialists in various fields. Whether you need a second opinion or ongoing treatment, rest assured you're in the best hands.",
-    icon: <Stethoscope className="w-8 h-8" />
+  { 
+    icon: Zap, 
+    title: 'Lightning Fast', 
+    description: 'Optimized for speed and efficiency',
+    details: 'Experience blazing-fast performance with our optimized algorithms and streamlined processes, saving you valuable time and resources.'
   },
-  {
-    title: "Safe & Secure",
-    description: "Your health information is protected with state-of-the-art security measures, including encryption and privacy policies that ensure your data is always handled with the utmost care and confidentiality.",
-    icon: <Shield className="w-8 h-8" />
+  { 
+    icon: Shield, 
+    title: 'Secure & Reliable', 
+    description: 'Your data is safe with us',
+    details: 'We employ state-of-the-art security measures and follow best practices to ensure your data is protected and your operations remain uninterrupted.'
   },
-  {
-    title: "Community",
-    description: "Join our supportive community of patients and healthcare providers. Share experiences, ask questions, and find solace in a network that understands your journey and is dedicated to helping you thrive.",
-    icon: <Users className="w-8 h-8" />
+  { 
+    icon: Rocket, 
+    title: 'Scalable', 
+    description: 'Grows with your business needs',
+    details: 'Our flexible architecture allows seamless scaling, accommodating your business growth without compromising performance or user experience.'
   },
-  {
-    title: "Quality Service",
-    description: "Premium healthcare services with a focus on patient satisfaction and well-being. Our team strives to deliver consistent, high-quality medical care that meets your expectations and enhances your overall health experience.",
-    icon: <Award className="w-8 h-8" />
+  { 
+    icon: Heart, 
+    title: 'User-Friendly', 
+    description: 'Intuitive design for the best experience',
+    details: 'We prioritize user experience, creating intuitive interfaces and smooth workflows that make our platform a joy to use for everyone.'
   },
-  {
-    title: "Personalized Care",
-    description: "Tailored medical solutions that address your unique healthcare needs. We take the time to understand your individual health goals, offering treatment plans and services designed specifically for you.",
-    icon: <Heart className="w-8 h-8" />
-  }
+  { 
+    icon: Star, 
+    title: 'Premium Quality', 
+    description: 'Only the best for our customers',
+    details: 'From development to customer support, we maintain the highest standards of quality in every aspect of our service, ensuring your complete satisfaction.'
+  },
 ]
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -68,6 +80,10 @@ const cardVariants = {
 }
 
 export default function Feature() {
+
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
+
   return (
     <motion.section
       initial="hidden"
@@ -94,25 +110,49 @@ export default function Feature() {
           variants={containerVariants}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
         >
-          {features?.map((feature, index) => (
+          {features.map((feature, index) => (
             <motion.div
               key={index}
-              variants={cardVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="w-64 h-64 m-4 relative"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <StylishCard
-                title={feature.title}
-                description={feature.description}
-                background="bg-gradient-to-tr from-[#FFE4E6] via-[#FECDD3] to-[#FFE4E6]"
-                titleColor="text-[#DB2777]"
-                textColor="text-text_default"
-                buttonColor="bg-[#DB2777]"
-                height="md:h-[380px] lg:h-[400px] 2xl:h-[320px] "
-                buttonHoverColor="hover:bg-[#BE185D]"
-                icon={feature.icon}
+              <div
+                className="absolute inset-0 bg-white rounded-2xl shadow-lg transform rotate-45 transition-all duration-300 ease-in-out"
+                style={{
+                  transformOrigin: 'center',
+                  transform: `rotate(45deg) scale(${hoveredIndex === index ? 1.1 : 1})`,
+                  boxShadow: hoveredIndex === index ? '0 10px 30px -10px rgba(236, 72, 153, 0.3)' : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                }}
               />
+              <div
+                className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center cursor-pointer"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <feature.icon
+                  className={`w-12 h-12 mb-4 transition-all duration-300 ease-in-out ${hoveredIndex === index ? 'text-pink-500 scale-110' : 'text-indigo-600'
+                    }`}
+                />
+                <h3 className="text-lg font-semibold mb-2 text-indigo-900">{feature.title}</h3>
+                <p className="text-sm text-pink-700 transition-all duration-300 ease-in-out"
+                  style={{
+                    maxHeight: hoveredIndex === index ? '100px' : '0',
+                    opacity: hoveredIndex === index ? 1 : 0,
+                    overflow: 'hidden'
+                  }}>
+                  {feature.description}
+                </p>
+                <p className="text-xs text-indigo-700 mt-2 transition-all duration-300 ease-in-out"
+                  style={{
+                    maxHeight: hoveredIndex === index ? '100px' : '0',
+                    opacity: hoveredIndex === index ? 1 : 0,
+                    overflow: 'hidden'
+                  }}>
+                  {feature.details}
+                </p>
+              </div>
             </motion.div>
           ))}
         </motion.div>

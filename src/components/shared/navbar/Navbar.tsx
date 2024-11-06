@@ -39,7 +39,7 @@ export default function Navbar() {
         <nav className={cn(
             "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
             scrolled
-                ? "bg-gradient-to-tr from-[#e0afb9] via-[#FECDD3] to-[#FECDD3] shadow-lg py-2"
+                ? "backdrop-blur-lg  shadow-lg py-2"
                 : " backdrop-blur-sm py-4"
         )}>
             {/* Yellow curved accent at the top */}
@@ -47,7 +47,7 @@ export default function Navbar() {
                 <div className="w-full h-full bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15]" />
             </div> */}
 
-            <div className="container ">
+            <div className="container">
                 <div className="flex items-center justify-between">
                     {/* Logo Section with curved yellow accent */}
                     <Logo />
@@ -65,7 +65,7 @@ export default function Navbar() {
                                                 "px-4 py-2 rounded-md lg:text-base md:text-sm text-base font-medium transition-all duration-200 flex items-center gap-2 relative group overflow-hidden",
                                                 pathName === link.link
                                                     ? "bg-button_bg text-white"
-                                                    : "text-text_default hover:bg-gradient-to-r hover:from-[#FEF08A]/20 hover:via-[#FDE047]/20 hover:to-[#FACC15]/20"
+                                                    : "hover:text-text_title"
                                             )}
                                         >
                                             {link.label}
@@ -120,8 +120,8 @@ export default function Navbar() {
                                     className={cn(
                                         "flex items-center gap-3 w-full text-left px-4 py-3 rounded-md text-base font-medium transition-all duration-200 group relative overflow-hidden",
                                         pathName === link.link
-                                            ? "bg-[#DB2777] text-white"
-                                            : "text-[#BE185D] hover:bg-gradient-to-r hover:from-[#FEF08A]/20 hover:via-[#FDE047]/20 hover:to-[#FACC15]/20"
+                                            ? "bg-button_bg text-white"
+                                            : "hover:text-text_title"
                                     )}
                                 >
                                     {link.label}

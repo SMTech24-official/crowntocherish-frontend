@@ -7,41 +7,32 @@ import SharedButton from "../shared/button/SharedButton"
 // import Image from "next/image"
 // import banner from "@/assets/ma-ai-scaled.jpg"
 export default function Hero() {
-  const benefits = [
-    {
-      icon: <Brain className="w-6 h-6" />,
-      title: "AI-Powered Insights",
-      description: "Leverage advanced AI technology to analyze medication information, ensuring you receive personalized recommendations based on your unique health profile and medication history."
-    },
-    {
-      icon: <Search className="w-6 h-6" />,
-      title: "Clear, Simple Explanations",
-      description: "Complex medical terms are broken down into plain language, making it easy for you to understand your medications and their effects without confusion."
-    },
-    {
-      icon: <Clock className="w-6 h-6" />,
-      title: "Available 24/7",
-      description: "Get access to vital medication information anytime you need it, day or night, providing peace of mind and support whenever you require assistance."
-    },
-    {
-      icon: <ShieldCheck className="w-6 h-6" />,
-      title: "Safe & Reliable",
-      description: "Rely on trusted information that comes with proper medical disclaimers, ensuring you have access to safe guidance without compromising your health."
-    }
-  ];
+  // const benefits = [
+  //   {
+  //     icon: <Brain className="w-6 h-6" />,
+  //     title: "AI-Powered Insights",
+  //     description: "Leverage advanced AI technology to analyze medication information, ensuring you receive personalized recommendations based on your unique health profile and medication history."
+  //   },
+  //   {
+  //     icon: <Search className="w-6 h-6" />,
+  //     title: "Clear, Simple Explanations",
+  //     description: "Complex medical terms are broken down into plain language, making it easy for you to understand your medications and their effects without confusion."
+  //   },
+  //   {
+  //     icon: <Clock className="w-6 h-6" />,
+  //     title: "Available 24/7",
+  //     description: "Get access to vital medication information anytime you need it, day or night, providing peace of mind and support whenever you require assistance."
+  //   },
+  //   {
+  //     icon: <ShieldCheck className="w-6 h-6" />,
+  //     title: "Safe & Reliable",
+  //     description: "Rely on trusted information that comes with proper medical disclaimers, ensuring you have access to safe guidance without compromising your health."
+  //   }
+  // ];
 
 
   return (
     <div className="relative bg-section_bg overflow-hidden min-h-screen">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5" />
-          </pattern>
-          <rect width="100" height="100" fill="url(#grid)" />
-        </svg>
-      </div>
       <div className="container py-16 md:py-24 mt-20 md:mt-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center justify-between w-full">
           {/* Content Section */}
@@ -80,14 +71,14 @@ export default function Hero() {
             >
               <div className="flex items-center gap-4">
               <SharedButton cls="bg-button_bg hover:bg-white hover:text-text_title border-text_title border text-white w-fit" text="Get Started" />
-              <SharedButton cls="hover:bg-button_bg bg-white text-text_title border-text_title border hover:text-white w-fit" text="Learn More" />
+              {/* <SharedButton cls="hover:bg-button_bg bg-white text-text_title border-text_title border hover:text-white w-fit" text="Learn More" /> */}
               </div>
 
             </motion.div>
           </motion.div>
 
           {/* Image/Illustration Section */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -101,13 +92,12 @@ export default function Hero() {
                   <p className="text-text-title font-medium">AI-Powered Medication Information</p>
                 </div>
               </div>
-              {/* <Image src={banner} alt="Banner Image" className="w-full h=full"/> */}
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         {/* Benefits Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
@@ -131,7 +121,7 @@ export default function Hero() {
               <p className=" text-text_default">{benefit.description}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </div>
     </div>
   )

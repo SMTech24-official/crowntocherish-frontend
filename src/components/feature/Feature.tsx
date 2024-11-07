@@ -2,97 +2,92 @@
 
 import { motion } from "framer-motion"
 import SectionHeader from "../shared/sectionHeader/SectionHeader"
-import { StylishCard } from "../styllishCard/StylishCard"
 import {
-  Stethoscope,
-  Heart,
-  Clock,
-  Shield,
-  Users,
-  Award,
   Lightbulb,
   Zap,
+  Shield,
   Rocket,
+  Heart,
   Star
 } from "lucide-react"
-import { useState } from "react"
 
 const features = [
-  { 
-    icon: Lightbulb, 
-    title: 'Innovative Ideas', 
-    description: 'Cutting-edge solutions for modern problems',
+  {
+    icon: Lightbulb,
+    title: 'Innovative Ideas',
     details: "Our team of experts constantly pushes the boundaries of what's possible, bringing you the latest and most innovative features in the industry."
   },
-  { 
-    icon: Zap, 
-    title: 'Lightning Fast', 
-    description: 'Optimized for speed and efficiency',
+  {
+    icon: Zap,
+    title: 'Lightning Fast',
     details: 'Experience blazing-fast performance with our optimized algorithms and streamlined processes, saving you valuable time and resources.'
   },
-  { 
-    icon: Shield, 
-    title: 'Secure & Reliable', 
-    description: 'Your data is safe with us',
+  {
+    icon: Shield,
+    title: 'Secure & Reliable',
     details: 'We employ state-of-the-art security measures and follow best practices to ensure your data is protected and your operations remain uninterrupted.'
   },
-  { 
-    icon: Rocket, 
-    title: 'Scalable', 
-    description: 'Grows with your business needs',
+  {
+    icon: Rocket,
+    title: 'Scalable',
     details: 'Our flexible architecture allows seamless scaling, accommodating your business growth without compromising performance or user experience.'
   },
-  { 
-    icon: Heart, 
-    title: 'User-Friendly', 
-    description: 'Intuitive design for the best experience',
+  {
+    icon: Heart,
+    title: 'User-Friendly',
     details: 'We prioritize user experience, creating intuitive interfaces and smooth workflows that make our platform a joy to use for everyone.'
   },
-  { 
-    icon: Star, 
-    title: 'Premium Quality', 
-    description: 'Only the best for our customers',
+  {
+    icon: Star,
+    title: 'Premium Quality',
     details: 'From development to customer support, we maintain the highest standards of quality in every aspect of our service, ensuring your complete satisfaction.'
   },
 ]
 
-
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
+  visible: { 
     opacity: 1,
-    transition: {
-      staggerChildren: 0.2
+    transition: { 
+      staggerChildren: 0.1,
+      delayChildren: 0.4
+    } 
+  }
+}
+
+const itemVariants = {
+  hidden: {  opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { 
+      type: "spring",
+      stiffness: 100,
+      damping: 10
     }
   }
 }
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
+const iconVariants = {
+  hidden: { scale: 0 },
+  visible: { 
+    scale: 1,
+    transition: { 
+      type: "spring",
+      stiffness: 200,
+      damping: 20
     }
   }
 }
 
 export default function Feature() {
-
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-
-
   return (
     <motion.section
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      variants={containerVariants}
-      className=""
+      className="py-16 bg-gradient-to-b from-background to-background/80"
     >
-      <div className="container section-gap">
+      <div className="container">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -100,7 +95,7 @@ export default function Feature() {
           transition={{ duration: 0.6 }}
         >
           <SectionHeader
-            toolText="AI-Powered Health Insights"
+            toolText="Insights"
             title="Key Features & Benefits"
             subtitle="Experience personalized, accurate, and reliable healthcare guidance tailored just for you. Our AI-driven insights offer clarity and support in understanding your health needs, ensuring a comprehensive and trustworthy experience at every step."
           />
@@ -108,48 +103,24 @@ export default function Feature() {
 
         <motion.div
           variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
         >
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="w-64 h-64 m-4 relative"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              variants={itemVariants}
+              className="group hover:cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 rounded-xl overflow-hidden"
+              whileHover={{ scale: 1.02 }}
             >
-              <div
-                className="absolute inset-0 bg-white rounded-2xl shadow-lg transform rotate-45 transition-all duration-300 ease-in-out"
-                style={{
-                  transformOrigin: 'center',
-                  transform: `rotate(45deg) scale(${hoveredIndex === index ? 1.1 : 1})`,
-                  boxShadow: hoveredIndex === index ? '0 10px 30px -10px rgba(236, 72, 153, 0.3)' : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                }}
-              />
-              <div
-                className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center cursor-pointer"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <feature.icon
-                  className={`w-12 h-12 mb-4 transition-all duration-300 ease-in-out ${hoveredIndex === index ? 'text-pink-500 scale-110' : 'text-indigo-600'
-                    }`}
-                />
-                <h3 className="text-lg font-semibold mb-2 text-indigo-900">{feature.title}</h3>
-                <p className="text-sm text-pink-700 transition-all duration-300 ease-in-out"
-                  style={{
-                    maxHeight: hoveredIndex === index ? '100px' : '0',
-                    opacity: hoveredIndex === index ? 1 : 0,
-                    overflow: 'hidden'
-                  }}>
-                  {feature.description}
-                </p>
-                <p className="text-xs text-indigo-700 mt-2 transition-all duration-300 ease-in-out"
-                  style={{
-                    maxHeight: hoveredIndex === index ? '100px' : '0',
-                    opacity: hoveredIndex === index ? 1 : 0,
-                    overflow: 'hidden'
-                  }}>
+              <div className="bg-card rounded-xl p-6 space-y-4 h-full flex flex-col">
+                <motion.div 
+                  className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 text-text_title"
+                  variants={iconVariants}
+                >
+                  <feature.icon className="w-6 h-6 text-primary" />
+                </motion.div>
+                <h3 className="text-xl font-semibold text-text_title">{feature.title}</h3>
+                <p className="text-muted-foreground flex-grow">
                   {feature.details}
                 </p>
               </div>
@@ -160,7 +131,3 @@ export default function Feature() {
     </motion.section>
   )
 }
-
-
-
-

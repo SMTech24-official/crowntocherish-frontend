@@ -1,8 +1,9 @@
 'use client'
+
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react"
+import {  ChevronLeft, ChevronRight, Star } from "lucide-react"
 import SectionHeader from "../shared/sectionHeader/SectionHeader"
 
 interface TestimonialProps {
@@ -36,24 +37,53 @@ const testimonials: TestimonialProps[] = [
         role: "Family Member",
         comment: "The care and compassion shown to my mother during her treatment was outstanding. The staff went above and beyond to ensure her comfort.",
         rating: 5
+    },
+    {
+        name: "Lisa Patel",
+        role: "Patient",
+        comment: "I was impressed by the efficiency and professionalism of the entire team. They made a potentially stressful experience much easier to handle.",
+        rating: 5
+    },
+    {
+        name: "Robert Kim",
+        role: "Healthcare Professional",
+        comment: "The collaborative approach to patient care here is truly commendable. It's a model for how modern healthcare should operate.",
+        rating: 5
     }
 ]
 
 export default function Testimonials() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isAnimating, setIsAnimating] = useState(false)
+    const [slidesToShow, setSlidesToShow] = useState(3)
+
+    const updateSlidesToShow = () => {
+        if (window.innerWidth >= 1024) {
+            setSlidesToShow(3)
+        } else if (window.innerWidth >= 768) {
+            setSlidesToShow(2)
+        } else {
+            setSlidesToShow(1)
+        }
+    }
+
+    useEffect(() => {
+        updateSlidesToShow()
+        window.addEventListener('resize', updateSlidesToShow)
+        return () => window.removeEventListener('resize', updateSlidesToShow)
+    }, [])
 
     const nextTestimonial = () => {
         if (!isAnimating) {
             setIsAnimating(true)
-            setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+            setCurrentIndex((prev) => (prev + 1) % (testimonials.length - slidesToShow + 1))
         }
     }
 
     const previousTestimonial = () => {
         if (!isAnimating) {
             setIsAnimating(true)
-            setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+            setCurrentIndex((prev) => (prev - 1 + testimonials.length - slidesToShow + 1) % (testimonials.length - slidesToShow + 1))
         }
     }
 
@@ -68,12 +98,12 @@ export default function Testimonials() {
     useEffect(() => {
         const autoPlayTimer = setInterval(nextTestimonial, 5000)
         return () => clearInterval(autoPlayTimer)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
-        <section className="section-gap ">
-            <div className="container mx-auto px-4">
+        <section className="section-gap">
+            <div className="container ">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -81,36 +111,29 @@ export default function Testimonials() {
                     transition={{ duration: 0.6 }}
                 >
                     <SectionHeader
-                        toolText="Real Stories from Real Patients"
+                        toolText="Testimonials"
                         title="What Our Patients Say"
                         subtitle="Read about the experiences of those who have trusted us with their healthcare needs. Discover how our dedicated care has positively impacted their health journeys."
                     />
-
                 </motion.div>
-                <div className="relative  md:max-w-2xl lg:max-w-4xl mx-auto">
-                    <div className="overflow-hidden">
+                <div className="relative">
+                    <div className="overflow-hidden   lg:w-full ">
                         <div
                             className="flex transition-transform duration-500 ease-in-out"
-                            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                            style={{ transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)` }}
                         >
                             {testimonials.map((testimonial, index) => (
                                 <div
                                     key={index}
-                                    className="w-full flex-shrink-0 px-4"
+                                    className={`flex-shrink-0 px-4 py-2 ${
+                                        slidesToShow === 3 ? 'w-1/3 h-[280px] overflow-hidden' : slidesToShow === 2 ? 'w-1/2 ' : 'w-full'
+                                    }`}
                                 >
-                                    <div className="relative w-full p-6 bg-gradient-to-tr from-[#FFE4E6] via-[#FECDD3] to-[#FFE4E6] rounded-xl shadow-lg overflow-hidden">
-                                        <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0,100 Q100,50 200,100 T400,100" fill="none" stroke="#FEF08A" strokeWidth="2" />
-                                            <path d="M0,200 Q100,150 200,200 T400,200" fill="none" stroke="#FEF08A" strokeWidth="2" />
-                                            <path d="M0,300 Q100,250 200,300 T400,300" fill="none" stroke="#FEF08A" strokeWidth="2" />
-                                        </svg>
-
+                                    <div className="relative w-full h-full p-6 rounded-xl shadow-lg overflow-hidden">
                                         <div className="relative z-10">
                                             <div className="flex items-center gap-3 mb-4">
-                                                <Quote className="w-8 h-8 text-white" />
                                                 <div>
                                                     <h3 className="text-base md:text-2xl font-bold text-text_title font-serif">{testimonial.name}</h3>
-                                                    <p className="text-white">{testimonial.role}</p>
                                                 </div>
                                             </div>
 
@@ -120,12 +143,8 @@ export default function Testimonials() {
                                                 ))}
                                             </div>
 
-                                            <p className="text-text-text-text_default mb-6 ">&quot;{testimonial.comment}&quot;</p>
+                                            <p className="text-text_default mb-6">&quot;{testimonial.comment}&quot;</p>
                                         </div>
-
-                                        <svg className="absolute bottom-0 right-0 w-32 h-32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="50" cy="50" r="40" fill="#FEF08A" opacity="0.5" />
-                                        </svg>
                                     </div>
                                 </div>
                             ))}
@@ -134,7 +153,7 @@ export default function Testimonials() {
 
                     <Button
                         onClick={previousTestimonial}
-                        className="absolute hidden md:block -left-6 top-1/2 -translate-y-1/2 -translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
+                        className="absolute hidden md:block  lg:mt-0 md:mt-6 max-w-10 md:right-4 lg:-left-6 lg:top-1/2 -translate-y-1/2 -translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
                         disabled={isAnimating}
                         aria-label="Previous testimonial"
                     >
@@ -143,24 +162,12 @@ export default function Testimonials() {
 
                     <Button
                         onClick={nextTestimonial}
-                        className="absolute hidden md:block -right-6 top-1/2 -translate-y-1/2 translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
+                        className="absolute hidden md:block  lg:mt-0 md:mt-6 md:right-0  lg:-right-6 lg:top-1/2 -translate-y-1/2 translate-x-4 bg-[#DB2777] hover:bg-[#BE185D] text-white rounded-full p-3 shadow-lg"
                         disabled={isAnimating}
                         aria-label="Next testimonial"
                     >
                         <ChevronRight className="w-8 h-8" />
                     </Button>
-
-                    <div className="flex justify-center mt-6 gap-2">
-                        {testimonials.map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setCurrentIndex(index)}
-                                className={`w-3 h-3 rounded-full transition-colors duration-200 ${currentIndex === index ? "bg-[#DB2777]" : "bg-[#FECDD3]"
-                                    }`}
-                                aria-label={`Go to testimonial ${index + 1}`}
-                            />
-                        ))}
-                    </div>
                 </div>
             </div>
         </section>

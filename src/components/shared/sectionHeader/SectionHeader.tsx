@@ -10,10 +10,9 @@ const SectionHeader = ({ title, subtitle, toolText }: { title: string, subtitle:
         </div>
       }
 
-      <h2 className="text-2xl md:text-4xl font-bold text-text_title mb-4 font-serif italic">{title}</h2>
-      <p className="text-black text-sm md:text-lg max-w-3xl mx-auto">
+      <h2 className="text-2xl md:text-4xl font-bold  mb-4 font-serif  bg-gradient-to-r from-pink-500 via-pink-400 to-yellow-500 text-transparent bg-clip-text">{title}</h2>
+      <p className="text-black text-sm md:text-base max-w-3xl mx-auto">
         {subtitle}
-
       </p>
     </div>
   );

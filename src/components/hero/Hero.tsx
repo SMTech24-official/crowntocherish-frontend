@@ -8,8 +8,8 @@ import { motion } from "framer-motion"
 
 export default function Hero() {
   return (
-    <div className="container relative py-16 md:py-24 mt-28 md: lg:mt-10">
-      <div className="grid items-center gap-8 lg:grid-cols-2 ">
+    <div className="container relative py-16 md:py-24 mt-28 lg:max-h-screen h-full lg:mt-20 flex items-center justify-center">
+      <div className="grid items-center justify-center gap-8 lg:grid-cols-2 ">
         <motion.div
           className="space-y-8"
           initial={{ opacity: 0, y: 50 }}

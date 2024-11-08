@@ -139,11 +139,11 @@ export default function Testimonials() {
 
                                             <div className="flex mb-4 gap-1">
                                                 {[...Array(testimonial.rating)].map((_, i) => (
-                                                    <Star key={i} className="fill-button_bg stroke-none" />
+                                                    <Star key={i} className="fill-yellow-400 stroke-none" />
                                                 ))}
                                             </div>
 
-                                            <p className="text-text_default mb-6">&quot;{testimonial.comment}&quot;</p>
+                                            <p className="text-text_default mb-6 text-sm md:text-base">&quot;{testimonial.comment}&quot;</p>
                                         </div>
                                     </div>
                                 </div>

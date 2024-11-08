@@ -109,8 +109,9 @@ export default function Feature() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group hover:cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 rounded-xl overflow-hidden"
-              whileHover={{ scale: 1.02 }}
+              className="group hover:cursor-pointer hover:shadow-lg hover:shadow-primary/20 rounded-xl overflow-hidden"
+              whileHover={{ scale: 1.04 }}
+              transition={{ type: "spring", stiffness: 200 }}
             >
               <div className="bg-card rounded-xl p-6 space-y-4 h-full flex flex-col">
                 <motion.div 

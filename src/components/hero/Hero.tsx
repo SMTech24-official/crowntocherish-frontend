@@ -90,8 +90,8 @@ export default function Hero() {
               </div>
             </motion.div>
             <motion.div
-              className="absolute lg:-right-4 md:right-1 bottom-52 right-0 md:bottom-80 lg:bottom-80 flex items-center gap-2 rounded-full bg-white p-3 shadow-lg"
-              initial={{ opacity: 0, x: 50 }}
+              className="absolute  lg:-right-4 md:right-1 bottom-52 right-0 md:bottom-80 lg:bottom-80 flex items-center gap-2 rounded-full bg-white p-3 shadow-lg"
+              initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1, duration: 0.5 }}
             >

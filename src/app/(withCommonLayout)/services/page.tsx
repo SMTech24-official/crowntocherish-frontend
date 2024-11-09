@@ -14,6 +14,8 @@ import {
 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import SectionHeader from "@/components/shared/sectionHeader/SectionHeader"
+import teamImage from "@/assets/image-removebg-preview (1).png"
+import Image from "next/image"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -83,9 +85,9 @@ const ServicesPage: React.FC = () => {
       >
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-12">
-          <SectionHeader 
-            title="Our Services" 
-            subtitle="Empowering you with clear, accessible medication information through advanced AI technology" 
+          <SectionHeader
+            title="Our Services"
+            subtitle="Empowering you with clear, accessible medication information through advanced AI technology"
           />
         </motion.div>
 
@@ -94,8 +96,8 @@ const ServicesPage: React.FC = () => {
           variants={itemVariants}
           className="text-center text-lg text-text_default max-w-3xl mx-auto mb-16"
         >
-          At ExplainMyMeds, we use advanced AI technology to help you understand your medications. 
-          Our services are designed to provide clear, concise information that empowers you to make 
+          At ExplainMyMeds, we use advanced AI technology to help you understand your medications.
+          Our services are designed to provide clear, concise information that empowers you to make
           informed decisions about your health.
         </motion.p>
 
@@ -172,10 +174,10 @@ const ServicesPage: React.FC = () => {
         {/* Feature Highlight */}
         <motion.div
           variants={itemVariants}
-          className="bg-gradient-to-r from-[#DB2777]/10 to-[#BE185D]/10 rounded-lg p-8 mb-16"
+          className="bg-gradient-to-r from-[#DB2777]/10 to-[#BE185D]/10 rounded-lg mb-16"
         >
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
+            <div className="p-8">
               <h2 className="text-2xl font-semibold text-text_title mb-4">
                 Why Choose ExplainMyMeds?
               </h2>
@@ -200,12 +202,7 @@ const ServicesPage: React.FC = () => {
                 </li>
               </ul>
             </div>
-            <div className="relative h-64">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#DB2777] to-[#BE185D] rounded-lg opacity-10" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Brain className="w-24 h-24 text-[#DB2777]" />
-              </div>
-            </div>
+            <Image alt="image of doctors in Team" className="object-contain h-64" src={teamImage} />
           </div>
         </motion.div>
 

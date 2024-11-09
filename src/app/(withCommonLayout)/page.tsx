@@ -1,3 +1,5 @@
+import Blogs from "@/components/blogs/Blogs";
+import FAQSection from "@/components/faq/Faq";
 import Feature from "@/components/feature/Feature";
 import Hero from "@/components/hero/Hero";
 import HowItWorks from "@/components/howItWorks/HowItWorks";
@@ -9,11 +11,13 @@ const page = () => {
   return (
     <>
       <Hero />
-      <MedsAi/>
+      <MedsAi />
       <Feature />
       <HowItWorks />
       <Testimonials />
       <SubmitReview />
+      <Blogs />
+      <FAQSection />
     </>
   );
 };

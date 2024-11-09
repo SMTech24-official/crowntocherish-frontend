@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { Brain, Clock, Search, ShieldCheck, Sparkles } from "lucide-react"
+import {  Sparkles } from "lucide-react"
 import { poppins } from "@/app/fonts/font"
 import SharedButton from "../shared/button/SharedButton"
 // import Image from "next/image"

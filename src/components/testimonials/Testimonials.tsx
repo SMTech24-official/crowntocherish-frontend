@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import {  ChevronLeft, ChevronRight, Star } from "lucide-react"
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react"
 import SectionHeader from "../shared/sectionHeader/SectionHeader"
 
 interface TestimonialProps {
@@ -98,7 +98,7 @@ export default function Testimonials() {
     useEffect(() => {
         const autoPlayTimer = setInterval(nextTestimonial, 5000)
         return () => clearInterval(autoPlayTimer)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -125,24 +125,27 @@ export default function Testimonials() {
                             {testimonials.map((testimonial, index) => (
                                 <div
                                     key={index}
-                                    className={`flex-shrink-0 px-4 py-2 ${
-                                        slidesToShow === 3 ? 'w-1/3 h-[280px] overflow-hidden' : slidesToShow === 2 ? 'w-1/2 ' : 'w-full'
-                                    }`}
+                                    className={`flex-shrink-0 px-4 py-2 ${slidesToShow === 3 ? 'w-1/3 h-[280px] overflow-hidden' : slidesToShow === 2 ? 'w-1/2 ' : 'w-full'
+                                        }`}
                                 >
-                                    <div className="relative w-full h-full p-6 rounded-xl shadow-lg overflow-hidden">
+                                    <div className="relative w-full h-full p-6 rounded-xl border overflow-hidden">
                                         <div className="relative z-10">
-                                            <div className="flex items-center gap-3 mb-4">
+                                            <div className="flex  justify-between">
                                                 <div>
-                                                    <h3 className="text-base md:text-2xl font-bold text-text_title font-serif">{testimonial.name}</h3>
+                                                    <div className="flex items-center gap-3 mb-4">
+                                                        <div>
+                                                            <h3 className="text-base md:text-2xl font-bold text-text_title font-serif">{testimonial.name}</h3>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex mb-4 gap-1">
+                                                        {[...Array(testimonial.rating)].map((_, i) => (
+                                                            <Star key={i} className="fill-yellow-400 stroke-none" />
+                                                        ))}
+                                                    </div>
                                                 </div>
+                                                <Quote className="w-10 h-10 text-pink-100" />
                                             </div>
-
-                                            <div className="flex mb-4 gap-1">
-                                                {[...Array(testimonial.rating)].map((_, i) => (
-                                                    <Star key={i} className="fill-yellow-400 stroke-none" />
-                                                ))}
-                                            </div>
-
                                             <p className="text-text_default mb-6 text-sm md:text-base">&quot;{testimonial.comment}&quot;</p>
                                         </div>
                                     </div>

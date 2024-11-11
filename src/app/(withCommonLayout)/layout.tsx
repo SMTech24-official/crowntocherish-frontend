@@ -1,6 +1,8 @@
-import Footer from "@/components/shared/footer/Footer";
+import NewFooter from "@/components/shared/footer/NoSSR";
 import Navbar from "@/components/shared/navbar/Navbar";
 import React, { ReactNode } from "react";
+
+
 
 
 const layout = ({ children }: { children: ReactNode }) => {
@@ -8,7 +10,7 @@ const layout = ({ children }: { children: ReactNode }) => {
     <div className="bg-background">
       <Navbar />
       {children}
-      <Footer />
+      <NewFooter />
     </div>
   );
 };

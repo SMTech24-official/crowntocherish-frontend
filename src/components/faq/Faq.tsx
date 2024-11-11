@@ -97,7 +97,7 @@ export default function FAQSection() {
                 alt="FAQ Illustration"
                 width={500}
                 height={500}
-                className="w-full h-auto rounded-lg shadow-xl"
+                className="w-full h-auto rounded-lg "
               />
             </div>
             <div className="absolute inset-0 bg-primary/10 rounded-lg transform rotate-3 scale-105 z-0"></div>
@@ -120,7 +120,7 @@ export default function FAQSection() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="border border-border rounded-lg overflow-hidden shadow-md"
+                className="border border-border rounded-lg overflow-hidden"
               >
                 <button
                   onClick={() => toggleFAQ(index)}

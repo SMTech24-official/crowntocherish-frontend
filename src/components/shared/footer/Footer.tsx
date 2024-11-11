@@ -1,6 +1,6 @@
 'use client'
 
-import {  useState } from "react"
+import { useState, useEffect } from "react"
 import { Facebook, Twitter, Instagram, Linkedin, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Logo from "../logo/Logo"
@@ -8,6 +8,12 @@ import Link from "next/link"
 
 export default function Footer() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
+  const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear())
+
+  useEffect(() => {
+    // Dynamically update the current year in the client
+    setCurrentYear(new Date().getFullYear())
+  }, [])
 
   const footerSections = [
     {
@@ -17,7 +23,7 @@ export default function Footer() {
         { label: "About Us", href: "/about-us" },
         { label: "How It Works", href: "./#how-it-works" },
         { label: "Services", href: "/services" },
-        { label: "Disclaimer", href: "/disclaimer" },
+        { label: "Latest Article", href: "/articles" },
       ],
     },
     {
@@ -25,6 +31,7 @@ export default function Footer() {
       links: [
         { label: "FAQ", href: "./#faq" },
         { label: "Contact Us", href: "/contact-us" },
+        { label: "Disclaimer", href: "/disclaimer" },
       ],
     },
   ]
@@ -40,10 +47,9 @@ export default function Footer() {
     setActiveSection(activeSection === title ? null : title)
   }
 
-    const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <footer className="text-white bg-black">
@@ -61,14 +67,13 @@ export default function Footer() {
             </p>
             <div className="mt-6 flex space-x-4">
               {socialLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
                   href={link.href}
-                  className="text-white hover:text-text_title  transition-colors duration-200"
-                  aria-label={link.label}
+                  className="text-white hover:text-text_title transition-colors duration-200"
                 >
                   <link.icon className="h-6 w-6" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -97,7 +102,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-white hover:text-text_title  transition-colors duration-200"
+                      className="text-white hover:text-text_title transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
@@ -109,9 +114,9 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-[#BE185D]/20 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-center md:text-left">
-            © {new Date().getFullYear()} Your Company Name. All rights reserved.
-          </p>
+          <div className="text-sm text-center md:text-left">
+            © {currentYear} Your Company Name. All rights reserved.
+          </div>
           <button
             onClick={scrollToTop}
             className="mt-4 md:mt-0 bg-[#DB2777] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#BE185D] transition-colors duration-200 flex items-center gap-2"

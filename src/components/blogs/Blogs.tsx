@@ -5,38 +5,9 @@ import { useState } from "react"
 import SectionHeader from "../shared/sectionHeader/SectionHeader"
 import { ArrowRight, Calendar, Clock, User } from "lucide-react"
 import Image from "next/image"
-import blogs1 from "@/assets/first.png"
-import blogs2 from "@/assets/blogs2.png"
-import blogs3 from "@/assets/04012024042001.png"
-const articles = [
-  {
-    title: "The Future of AI in Healthcare",
-    excerpt: "Explore how artificial intelligence is revolutionizing patient care and medical research.",
-    author: "Dr. Jane Smith",
-    date: "2023-05-15",
-    readTime: "5 min read",
-    image: blogs1,
-    category: "Technology"
-  },
-  {
-    title: "Understanding Mental Health in the Digital Age",
-    excerpt: "Discover the impact of technology on mental well-being and strategies for maintaining balance.",
-    author: "Prof. Michael Johnson",
-    date: "2023-05-10",
-    readTime: "7 min read",
-    image: blogs2,
-    category: "Mental Health"
-  },
-  {
-    title: "Nutrition Myths Debunked",
-    excerpt: "Separating fact from fiction in the world of diet and nutrition with evidence-based insights.",
-    author: "Nutritionist Sarah Lee",
-    date: "2023-05-05",
-    readTime: "6 min read",
-    image: blogs3,
-    category: "Nutrition"
-  }
-]
+import { articles } from "@/lib/blogs"
+import Link from "next/link"
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -109,7 +80,7 @@ export default function Blogs() {
                     transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)'
                   }}
                 />
-                <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-2 py-1 rounded text-sm font-medium">
+                <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-2 py-1 text-sm font-medium inset  text-yellow-100 backdrop-blur-md rounded-md">
                   {article.category}
                 </div>
               </div>
@@ -120,17 +91,17 @@ export default function Blogs() {
                 <p className="text-muted-foreground line-clamp-3">
                   {article.excerpt}
                 </p>
-                <div className="flex items-center text-sm text-muted-foreground space-x-4">
-                  <div className="flex items-center">
-                    <User className="w-4 h-4 mr-1" />
+                <div className="flex flex-wrap gap-2 justify-start items-center text-sm text-muted-foreground ">
+                  <div className="flex gap-1 items-center">
+                    <User className="w-4 h-4 " />
                     {article.author}
                   </div>
-                  <div className="flex items-center">
-                    <Calendar className="w-4 h-4 mr-1" />
+                  <div className="flex gap-1 items-center">
+                    <Calendar className="w-4 h-4 " />
                     {new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                   </div>
-                  <div className="flex items-center">
-                    <Clock className="w-4 h-4 mr-1" />
+                  <div className="flex gap-1 items-center">
+                    <Clock className="w-4 h-4 " />
                     {article.readTime}
                   </div>
                 </div>
@@ -139,7 +110,10 @@ export default function Blogs() {
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  Read More
+                  <Link href={`/articles/${article.slug}`}>
+
+                    Read More
+                  </Link>
                   <ArrowRight className="w-4 h-4 ml-1" />
                 </motion.button>
               </div>

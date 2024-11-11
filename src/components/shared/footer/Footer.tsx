@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from "react"
+import {  useState } from "react"
 import { Facebook, Twitter, Instagram, Linkedin, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Logo from "../logo/Logo"
+import Link from "next/link"
 
 export default function Footer() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
@@ -12,19 +13,18 @@ export default function Footer() {
     {
       title: "Company",
       links: [
-        { label: "About Us", href: "#about-us" },
-        { label: "How It Works", href: "#how-it-works" },
-        { label: "Services", href: "#services" },
-        { label: "Disclaimer", href: "#disclaimer" },
+        { label: "Home", href: "/" },
+        { label: "About Us", href: "/about-us" },
+        { label: "How It Works", href: "./#how-it-works" },
+        { label: "Services", href: "/services" },
+        { label: "Disclaimer", href: "/disclaimer" },
       ],
     },
     {
       title: "Support",
       links: [
-        { label: "FAQ", href: "#faq" },
-        { label: "Contact Us", href: "#contact-us" },
-        { label: "Privacy Policy", href: "#privacy-policy" },
-        { label: "Terms of Service", href: "#terms-of-service" },
+        { label: "FAQ", href: "./#faq" },
+        { label: "Contact Us", href: "/contact-us" },
       ],
     },
   ]
@@ -40,9 +40,10 @@ export default function Footer() {
     setActiveSection(activeSection === title ? null : title)
   }
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
 
   return (
     <footer className="text-white bg-black">
@@ -94,12 +95,12 @@ export default function Footer() {
               >
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <Link
                       href={link.href}
                       className="text-white hover:text-text_title  transition-colors duration-200"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

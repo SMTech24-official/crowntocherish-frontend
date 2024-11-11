@@ -67,7 +67,7 @@ export default function Component() {
     }, [scrollYProgress, activeStep])
 
     return (
-        <div className="section-gap min-h-screen " ref={containerRef}>
+        <div id='how-it-works' className="section-gap min-h-screen " ref={containerRef}>
             <div className="container ">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

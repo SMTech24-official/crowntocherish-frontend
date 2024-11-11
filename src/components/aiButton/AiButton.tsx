@@ -1,11 +1,13 @@
-import Link from "next/link"
+"use client"
 import { Sparkles } from "lucide-react"
+import Link from "next/link"
 
 export default function AiButton() {
+
   return (
     <div className="flex items-center justify-center">
       <Link
-        href="#aiChat"
+        href={"./#aiChat"}
         className="relative group"
       >
         <div className="absolute -inset-[1px] bg-gradient-to-r from-teal-400 via-[#DB2777] to-yellow-500 rounded-full blur-sm opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-xy"></div>

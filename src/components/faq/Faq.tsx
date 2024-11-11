@@ -63,6 +63,7 @@ export default function FAQSection() {
 
   return (
     <motion.section
+      id='faq'
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -128,9 +129,8 @@ export default function FAQSection() {
                 >
                   <span className="text-lg font-medium text-text_title">{faq.question}</span>
                   <ChevronDown
-                    className={`w-5 h-5 text-primary transition-transform duration-200 ${
-                      activeIndex === index ? 'transform rotate-180' : ''
-                    }`}
+                    className={`w-5 h-5 text-primary transition-transform duration-200 ${activeIndex === index ? 'transform rotate-180' : ''
+                      }`}
                   />
                 </button>
                 <AnimatePresence>

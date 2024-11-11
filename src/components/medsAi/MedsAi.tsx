@@ -102,7 +102,7 @@ export default function Component() {
     ]
 
     return (
-        <main className="min-h-screen section-gap">
+        <main id='aiChat' className="min-h-screen section-gap">
             <section className="container">
                 <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-12">
                     <motion.div

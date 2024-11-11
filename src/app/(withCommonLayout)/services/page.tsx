@@ -125,7 +125,7 @@ const ServicesPage: React.FC = () => {
         </motion.div>
 
         {/* Personalized Information Section */}
-        <motion.div variants={itemVariants} className="mb-16">
+        <motion.div variants={itemVariants} className="mb-16" >
           <h2 className="text-2xl font-semibold text-text_title mb-4 text-center">Personalized Information</h2>
           <p className="text-text_default mb-8 text-center">
             Our service tailors information to your individual needs, considering your unique health profile and circumstances.
@@ -171,6 +171,8 @@ const ServicesPage: React.FC = () => {
 
         {/* Feature Highlight */}
         <motion.div
+          whileHover={{ scale: 1.04 }}
+          transition={{ type: "spring", stiffness: 200 }}
           variants={itemVariants}
           className="bg-gradient-to-r from-[#DB2777]/10 to-[#BE185D]/10 rounded-lg mb-16"
         >

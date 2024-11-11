@@ -97,8 +97,13 @@ export default function ContactPage() {
       >
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-12">
-          <SectionHeader title="Contact Us" subtitle="Email, call, or complete the form to learn how we can solve your needs." />
+          <SectionHeader
+            title="Reach out to us for personalized assistance"
+            toolText="Contact Us"
+            subtitle="Email, call, or complete the form to learn how we can solve your needs."
+          />
         </motion.div>
+
 
         {/* Contact Grid */}
         <div className="grid gap-8 md:grid-cols-2 items-start">

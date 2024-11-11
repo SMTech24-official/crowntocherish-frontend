@@ -4,9 +4,7 @@ import { motion } from "framer-motion"
 import {
   Brain,
   UserCog,
-  Clock,
   Shield,
-  FileText,
   MessageSquare,
   Download,
   ArrowRight,
@@ -16,6 +14,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import SectionHeader from "@/components/shared/sectionHeader/SectionHeader"
 import teamImage from "@/assets/image-removebg-preview (1).png"
 import Image from "next/image"
+import TechUsed from "@/components/service/TechUsed"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -76,7 +75,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon: Icon, title, descriptio
 
 const ServicesPage: React.FC = () => {
   return (
-    <div className="min-h-screen section-gap lg:mt-0  md:mt-20 mt-28">
+    <div className="min-h-screen section-gap lg:mt-0 md:mt-20 mt-28">
       <motion.div
         className="container"
         variants={containerVariants}
@@ -86,23 +85,32 @@ const ServicesPage: React.FC = () => {
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-12">
           <SectionHeader
-            title="Our Services"
+            toolText="Our Services"
+            title=" AI-Powered Medication Explanations"
             subtitle="Empowering you with clear, accessible medication information through advanced AI technology"
           />
         </motion.div>
 
+        {/* TechUsed component */}
+        <TechUsed />
+
         {/* Introduction */}
         <motion.p
           variants={itemVariants}
-          className="text-center text-lg text-text_default max-w-3xl mx-auto mb-16"
+          className="text-center text-lg text-text_default max-w-3xl mx-auto mb-16 mt-20"
         >
           At ExplainMyMeds, we use advanced AI technology to help you understand your medications.
           Our services are designed to provide clear, concise information that empowers you to make
           informed decisions about your health.
         </motion.p>
 
-        {/* Services Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
+        {/* AI-Powered Explanations Section */}
+        <motion.div variants={itemVariants} className="mb-16">
+          <h2 className="text-2xl font-semibold text-text_title mb-4 text-center">AI-Powered Explanations</h2>
+          <p className="text-text_default mb-8 text-center">
+            Our AI technology breaks down complex medical information into easy-to-understand explanations,
+            ensuring you have a clear grasp of your medication details.
+          </p>
           <ServiceCard
             icon={Brain}
             title="AI-Powered Medication Explanations"
@@ -114,6 +122,14 @@ const ServicesPage: React.FC = () => {
               "Drug interactions identified",
             ]}
           />
+        </motion.div>
+
+        {/* Personalized Information Section */}
+        <motion.div variants={itemVariants} className="mb-16">
+          <h2 className="text-2xl font-semibold text-text_title mb-4 text-center">Personalized Information</h2>
+          <p className="text-text_default mb-8 text-center">
+            Our service tailors information to your individual needs, considering your unique health profile and circumstances.
+          </p>
           <ServiceCard
             icon={UserCog}
             title="Custom Explanations Tailored to You"
@@ -125,17 +141,10 @@ const ServicesPage: React.FC = () => {
               "Personalized dosage guidance",
             ]}
           />
-          <ServiceCard
-            icon={Clock}
-            title="24/7 Accessibility"
-            description="Access medication information whenever you need it, day or night."
-            features={[
-              "Round-the-clock availability",
-              "Instant information access",
-              "Mobile-friendly platform",
-              "No waiting times",
-            ]}
-          />
+        </motion.div>
+
+        {/* Other Services Grid */}
+        <div className="grid gap-8 md:grid-cols-2 mb-16">
           <ServiceCard
             icon={Shield}
             title="Data Privacy and Security"
@@ -145,17 +154,6 @@ const ServicesPage: React.FC = () => {
               "Secure data storage",
               "HIPAA compliance",
               "Private browsing options",
-            ]}
-          />
-          <ServiceCard
-            icon={FileText}
-            title="Printable Reports"
-            description="Generate and share easy-to-read medication reports."
-            features={[
-              "PDF download option",
-              "Print-friendly formats",
-              "Shareable summaries",
-              "Digital record keeping",
             ]}
           />
           <ServiceCard
@@ -205,30 +203,6 @@ const ServicesPage: React.FC = () => {
             <Image alt="image of doctors in Team" className="object-contain h-64" src={teamImage} />
           </div>
         </motion.div>
-
-        {/* Call to Action
-        <motion.div
-          variants={itemVariants}
-          className="text-center"
-        >
-          <h2 className="text-2xl font-semibold text-text_title mb-4">
-            Ready to Understand Your Medications?
-          </h2>
-          <p className="text-text_default mb-8">
-            Get started today and take control of your health with ExplainMyMeds.
-          </p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              className="bg-[#DB2777] hover:bg-[#BE185D] text-white px-8 py-6 text-lg"
-              asChild
-            >
-              <Link href="/start">Start Now</Link>
-            </Button>
-          </motion.div>
-        </motion.div> */}
       </motion.div>
     </div>
   )

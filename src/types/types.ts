@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image"
 
 
 export interface CardProps {
@@ -11,3 +12,23 @@ export interface CardProps {
     buttonHoverColor: string
     icon?: React.ReactNode
   }
+
+ export  interface TestimonialProps {
+    name: string
+    role: string
+    comment: string
+    rating: number
+}
+
+export type BlogPost = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  description: string;
+  author: string;
+  date: string; // You may want to consider using Date type if you plan to work with date operations
+  readTime: string;
+  image: StaticImageData | string; // Assuming `blogs1` is an image file or URL as a string
+  category: string;
+  keyPoints: string[];
+};

@@ -8,8 +8,9 @@ import blogs7 from "@/assets/first.png";
 import blogs8 from "@/assets/04012024042001.png";
 import blogs9 from "@/assets/blogs2.png";
 import blogs10 from "@/assets/first.png";
+import { BlogPost } from "@/types/types";
 
-export const articles = [
+export const articles : BlogPost[] = [
   {
     title: "The Future of AI in Healthcare",
     slug: "the-future-of-ai-in-healthcare",
@@ -133,6 +134,15 @@ export const articles = [
     readTime: "7 min read",
     image: blogs6,
     category: "Health",
+    keyPoints: [
+      "Understanding the science of sleep and sleep cycles",
+      "How insufficient sleep affects memory, immune function, and health",
+      "The importance of quality sleep for physical and mental well-being",
+      "Practical tips to improve sleep hygiene and rest quality",
+      "Setting a sleep schedule and creating a sleep-friendly environment",
+      "Using mindfulness techniques to calm the mind before sleep",
+      "Advice for managing insomnia and improving overall sleep habits",
+    ],
   },
   {
     title: "The Science of Sleep: How to Improve Your Rest for Better Health",

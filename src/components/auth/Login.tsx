@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { LockIcon, UserIcon } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 import LogInImage from "@/assets/login.jpg"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 export default function AdminLogin() {
@@ -93,7 +93,7 @@ export default function AdminLogin() {
 
             {/* Welcome Text */}
             <div className="absolute bottom-8 left-8 text-white z-20">
-                <h2 className="md:text-4xl text-xl font-bold mb-4">Welcome to MedSense Admin</h2>
+                <h2 className="md:text-4xl text-xl font-bold mb-4">Welcome to Explain My Meds Admin</h2>
                 <p className="md:text-xl">
                     Manage and monitor your AI-powered medication information system
                 </p>

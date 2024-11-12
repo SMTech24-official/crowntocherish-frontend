@@ -1,106 +1,110 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+import React, { useRef, useEffect, useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { LayoutDashboard, Users, Star, Home, Menu, X, LogOut } from 'lucide-react'
 import { cn } from "@/lib/utils"
-import { 
-  Home, 
-  BarChart2, 
-  Users, 
-  FileText, 
-  Settings, 
-  Menu,
-  X
-} from "lucide-react"
-import Link from "next/link"
 
-const navItems = [
-  { icon: Home, label: "Dashboard", href: "/" },
-  { icon: BarChart2, label: "Analytics", href: "/analytics" },
-  { icon: Users, label: "Customers", href: "/customers" },
-  { icon: FileText, label: "Reports", href: "/reports" },
-  { icon: Settings, label: "Settings", href: "/settings" },
-]
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { poppins } from '@/app/fonts/font'
+import Logo from '@/components/shared/logo/Logo'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-export default function DashBoardNav() {
-  const [isMobile, setIsMobile] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
+const adminNavItems = [
+    { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
+    { name: 'Feedbacks', href: '/admin/dashboard/feedback', icon: Star },
+    { name: 'Subscriber', href: '/admin/dashboard/subscriber', icon: Users },
+    { name: 'Home', href: '/', icon: Home },
+];
 
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkScreenSize()
-    window.addEventListener('resize', checkScreenSize)
-    return () => window.removeEventListener('resize', checkScreenSize)
-  }, [])
+export default function DashboardNav() {
+    const [isOpen, setIsOpen] = useState(false)
+    const [activeNav, setActiveNav] = useState('')
+    const navRef = useRef<HTMLDivElement>(null)
+    const pathname = usePathname()
 
-  const NavContent = () => (
-    <nav className="space-y-2">
-      {navItems.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={cn(
-            "flex items-center space-x-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-gray-900",
-            "hover:bg-gray-100/50 dark:text-gray-400 dark:hover:text-gray-50 dark:hover:bg-gray-800/50"
-          )}
-        >
-          <item.icon className="h-5 w-5" />
-          <span>{item.label}</span>
-        </Link>
-      ))}
-    </nav>
-  )
+    useEffect(() => {
+        setActiveNav(pathname)
+    }, [pathname])
 
-  return (
-    <>
-      {isMobile ? (
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Button 
-              variant="outline" 
-              size="icon"
-              className="fixed top-4 left-4 z-50 md:hidden"
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (navRef.current && !navRef.current.contains(event.target as Node)) {
+                setIsOpen(false)
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [navRef])
+
+    return (
+        <div ref={navRef} className="relative z-40 h-full">
+            <button
+                className="md:hidden fixed flex items-center justify-end top-0 py-7 -left-2 z-30 w-full "
+                onClick={() => setIsOpen(!isOpen)}
             >
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Open menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-lg font-semibold">Menu</h2>
-              <Button 
-                variant="outline" 
-                size="icon" 
-                onClick={() => setIsOpen(false)}
-              >
-                <X className="h-4 w-4" />
-                <span className="sr-only">Close menu</span>
-              </Button>
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                <span className="sr-only">Toggle menu</span>
+            </button>
+
+            <div
+                className={cn(
+                    "fixed inset-y-0 left-0 z-40 w-64 md:w-56 lg:w-72 h-full shadow-2xl md:shadow-lg dark:bg-gray-800 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 bg-pink-50",
+                    isOpen ? "translate-x-0" : "-translate-x-full"
+                )}
+            >
+
+                <div className="flex flex-col h-full lg:pt-6 md:pt-3 pt-4 backdrop-blur-lg">
+                    <div className="flex items-center justify-center">
+                        <Logo />
+                    </div>
+                    <ScrollArea className="flex-1 border">
+                        <nav className="space-y-2 pl-4 p-2">
+                            {adminNavItems?.map((item) => (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className={cn(
+                                        `flex group items-center space-x-3 px-3 py-2 rounded-lg ${poppins.className}`,
+                                        pathname === item.href ? "bg-button_bg text-white" : " group-hover:text-text_title"
+                                    )}
+                                    onClick={() => setActiveNav(item.href)}
+                                >
+                                    <item.icon className={`h-5 w-5 ${activeNav == item.href ? "" : "group-hover:text-text_title"}  `} />
+                                    <span className={` ${activeNav == item.href ? "" : "group-hover:text-text_title"}  `}>{item.name}</span>
+                                </Link>
+                            ))}
+                        </nav>
+                    </ScrollArea>
+                    {/* User section */}
+                    <div className='p-4 border-t'>
+                        <div className='flex items-center space-x-4 p-2'>
+                            <Avatar className=''>
+                                <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
+                                <AvatarFallback className='bg-slate-200'>UN</AvatarFallback>
+                            </Avatar>
+                            <div>
+                                <p className='font-medium'>User Name</p>
+                                <p className='text-xs text-gray-500 my-1'>user@example.com</p>
+                                <div className='flex items-center space-x-1'>
+                                    <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+                                    <p className='text-xs text-gray-500'>Active</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <button className='w-full flex items-center border px-5 rounded-xl py-2 mt-4 bg-red-500 text-white'>
+                                <LogOut className='w-4 h-4 mr-2' />
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <NavContent />
-          </SheetContent>
-        </Sheet>
-      ) : (
-        <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-          <div className="flex-1 flex flex-col min-h-0 bg-white/80 backdrop-blur-lg border-r border-gray-200">
-            <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-              <div className="flex items-center flex-shrink-0 px-4">
-                <h1 className="text-xl font-semibold">Dashboard</h1>
-              </div>
-              <div className="mt-5 flex-1 px-2">
-                <NavContent />
-              </div>
-            </div>
-          </div>
         </div>
-      )}
-    </>
-  )
+    )
 }

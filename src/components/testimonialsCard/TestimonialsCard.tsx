@@ -43,6 +43,10 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
                         </div>
                         <Quote className="w-10 h-10 text-pink-100" />
                     </div>
+                    {
+                        isAdmin && <p className="text-text_default mb-6 text-sm md:text-base flex-1 font-semibold">{data.email}</p>
+                    }
+                    
                     <p className="text-text_default mb-6 text-sm md:text-base flex-1 ">&quot;{data.comment}&quot;</p>
                 </div>
                 {

@@ -18,17 +18,17 @@ export default function DashboardPage() {
                 subtitle="Email, call, or complete the form to learn how we can solve your needs."
             />
 
-            <div className="">
+            <div className="mt-10">
                 <DashBoardStates />
             </div>
 
-            <Card>
+            <Card className='mt-10'>
                 <CardHeader>
                     <CardTitle>Active Feedbacks</CardTitle>
                 </CardHeader>
                 <CardContent className='grid lg:grid-cols-3 grid-cols-1 gap-4'>
                     {
-                        testimonials?.map((data, idx) => <TestimonialsCard idx={idx} data={data} key={idx} />)
+                        testimonials?.map((data, idx) => <TestimonialsCard isAdmin={true} idx={idx} data={data} key={idx} />)
                     }
                 </CardContent>
             </Card>

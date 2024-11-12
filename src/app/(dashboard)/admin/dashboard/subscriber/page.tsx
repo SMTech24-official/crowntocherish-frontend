@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
     Table,
@@ -11,7 +10,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table'
-import { Mail, Search, Users, Calendar, Send } from 'lucide-react'
+import { Mail, Search, Calendar, Send } from 'lucide-react'
 import DashboardHeader from '@/components/shared/dashboardHeader/DashboardHeader'
 
 // Mock data for subscribers
@@ -24,16 +23,15 @@ const initialSubscribers = [
 ]
 
 export default function SubscriberTable() {
-    const [subscribers, setSubscribers] = useState(initialSubscribers)
     const [searchTerm, setSearchTerm] = useState('')
 
-    const filteredSubscribers = subscribers.filter((subscriber) =>
+    const filteredSubscribers = initialSubscribers.filter((subscriber) =>
         subscriber.email.toLowerCase().includes(searchTerm.toLowerCase())
     )
 
     const handleSendEmail = (email: string) => {
         console.log(`Sending email to ${email}`)
-        // Implement your email sending logic here
+
     }
 
     return (
@@ -46,7 +44,7 @@ export default function SubscriberTable() {
 
             <div className="flex flex-col md:flex-row justify-between gap-4 md:items-center mb-6">
                 <div className="text-lg font-semibold flex items-center gap-2">
-                    Total Subscribers: {subscribers.length}
+                    Total Subscribers: {initialSubscribers.length}
                 </div>
                 <div className="relative max-w-sm">
                     <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />

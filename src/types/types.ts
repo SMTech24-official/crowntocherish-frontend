@@ -15,7 +15,7 @@ export interface CardProps {
 
  export  interface TestimonialProps {
     name: string
-    role: string
+    email: string
     comment: string
     rating: number
 }

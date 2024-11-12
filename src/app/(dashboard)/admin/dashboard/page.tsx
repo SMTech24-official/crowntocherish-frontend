@@ -11,7 +11,7 @@ import DashBoardStates from '@/components/dashboard/DashBoardStates'
 
 export default function DashboardPage() {
     return (
-        <div className="space-y-8 p-8">
+        <div className="dashboard-containers">
             <DashboardHeader
                 title="Reach out to us for personalized assistance"
                 toolText="Dashboard"

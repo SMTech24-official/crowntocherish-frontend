@@ -19,6 +19,7 @@ export default function AdminLogin() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const result = await signIn("credentials", {
             email: email,
             password: password,

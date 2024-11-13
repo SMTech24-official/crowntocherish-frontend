@@ -1,10 +1,10 @@
-import LogIn from '@/components/auth/Login';
+import AdminLogin from '@/components/auth/Login';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <LogIn csrfToken='credentials' />
+            <AdminLogin />
         </div>
     );
 };

@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { redirect, usePathname } from 'next/navigation'
+import {  usePathname } from 'next/navigation'
 import { LayoutDashboard, Users, Star, Home, Menu, X, LogOut } from 'lucide-react'
 import { cn } from "@/lib/utils"
 

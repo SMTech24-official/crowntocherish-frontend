@@ -35,7 +35,8 @@ export default function SubscriberTable() {
     }
 
     return (
-        <div className="dashboard-containers">
+        <div className="dashboard-containers">  
+
                 <DashboardHeader
                     title="Engage with Your Subscribers"
                     toolText="Subscriber"

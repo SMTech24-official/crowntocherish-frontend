@@ -10,15 +10,15 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
     const handlePublish = (actionName: string) => {
         console.log(`${actionName} button clicked`);
     };
-    
+
     const handleDelete = (actionName: string) => {
         console.log(`${actionName} button clicked`);
     };
-    
+
     const handleUnPublish = (actionName: string) => {
         console.log(`${actionName} button clicked`);
     };
-    
+
     return (
         <div
             key={idx}
@@ -46,9 +46,32 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
                     {
                         isAdmin && <p className="text-text_default mb-6 text-sm md:text-base flex-1 font-semibold">{data.email}</p>
                     }
-                    
+
                     <p className="text-text_default mb-6 text-sm md:text-base flex-1 ">&quot;{data.comment}&quot;</p>
                 </div>
+                {/* <div class="relative w-full h-full p-6 rounded-xl border overflow-hidden animate-pulse">
+                    <div class="relative z-10">
+                        <div class="flex justify-between">
+                            <div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div>
+                                        <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                                    </div>
+                                </div>
+                                <div class="flex mb-4 gap-1">
+                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
+                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
+                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
+                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
+                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="h-10 w-10 bg-gray-200 rounded"></div>
+                        </div>
+                        <div class="h-4 bg-gray-200 rounded w-full mb-6"></div>
+                        <div class="h-4 bg-gray-200 rounded w-full mb-6"></div>
+                    </div>
+                </div> */}
                 {
                     isAdmin && (
                         <div className=" flex flex-wrap items-center justify-start gap-3">

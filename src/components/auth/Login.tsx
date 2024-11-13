@@ -8,17 +8,23 @@ import { LockIcon, UserIcon } from "lucide-react"
 import Image from "next/image"
 import LogInImage from "@/assets/login.jpg"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { signIn } from "next-auth/react"
+// import { useRouter } from "next/navigation"
 
 export default function AdminLogin() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const router = useRouter()
-    const handleSubmit = (e: React.FormEvent) => {
+    // const router = useRouter()
+
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        // Add your login logic here
-        console.log("Login attempted with:", email, password)
-        router.push("/admin/dashboard")
+        const result = await signIn("credentials", {
+            email: email,
+            password: password,
+            redirect: true,
+            callbackUrl: "/admin/dashboard",
+        });
     }
 
     return (

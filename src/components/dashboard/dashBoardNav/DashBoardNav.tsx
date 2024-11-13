@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { redirect, usePathname } from 'next/navigation'
 import { LayoutDashboard, Users, Star, Home, Menu, X, LogOut } from 'lucide-react'
 import { cn } from "@/lib/utils"
 
@@ -10,7 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { poppins } from '@/app/fonts/font'
 import Logo from '@/components/shared/logo/Logo'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
+import { signOut, useSession } from "next-auth/react";
 const adminNavItems = [
     { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Feedbacks', href: '/admin/dashboard/feedback', icon: Star },
@@ -19,11 +19,12 @@ const adminNavItems = [
 ];
 
 export default function DashboardNav() {
+
+    const { data: session } = useSession();
     const [isOpen, setIsOpen] = useState(false)
     const [activeNav, setActiveNav] = useState('')
     const navRef = useRef<HTMLDivElement>(null)
     const pathname = usePathname()
-
     useEffect(() => {
         setActiveNav(pathname)
     }, [pathname])
@@ -40,6 +41,8 @@ export default function DashboardNav() {
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [navRef])
+
+    console.log(session);
 
     return (
         <div ref={navRef} className="relative z-40 h-full">
@@ -97,10 +100,11 @@ export default function DashboardNav() {
                             </div>
                         </div>
                         <div className="flex items-center justify-center">
-                            <button className='w-full flex items-center border px-5 rounded-xl py-2 mt-4 bg-red-500 text-white'>
+                            {session?.user && <button onClick={() => signOut()} className='w-full flex items-center border px-5 rounded-xl py-2 mt-4 bg-red-500 text-white'>
                                 <LogOut className='w-4 h-4 mr-2' />
                                 Logout
                             </button>
+                            }
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 import { articles } from "@/lib/blogs";
 
+
 const stored = [...articles];
 
 export const GET = async () => {
@@ -9,9 +10,9 @@ export const GET = async () => {
 
 
 
-export async function POST(request) {
+export async function POST(request: Request) {
   const newArticles = await request.json();
-  articles.push(newArticles);
+  stored.push(newArticles);
   return Response.json({
     message: "success",
   });

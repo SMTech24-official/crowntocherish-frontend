@@ -116,8 +116,7 @@ export async function PATCH(request: Request) {
     }
 
     // Determine new status based on current status
-    const newStatus =
-      feedback.status === "published" ? "unpublished" : "published";
+    const newStatus = feedback.status === "published" ? "unpublished" : "published";
 
     // Update the document with the new status
     const res = await feedBackCollections.updateOne(
@@ -129,7 +128,7 @@ export async function PATCH(request: Request) {
       return new Response(
         JSON.stringify({
           status: 200,
-          message: `Feedback status updated to ${newStatus}`,
+          message: `Feedback ${feedback.status}.`,
         }),
         { status: 200, headers: { "Content-Type": "application/json" } }
       );

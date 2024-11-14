@@ -1,23 +1,26 @@
-import { StaticImageData } from "next/image"
+import { StaticImageData } from "next/image";
 
+export type id = {
+  _id: string;
+};
+export type CardProps = {
+  title: string;
+  description: string;
+  background: string;
+  height: string;
+  titleColor: string;
+  textColor: string;
+  buttonColor: string;
+  buttonHoverColor: string;
+  icon?: React.ReactNode;
+}
 
-export interface CardProps {
-    title: string
-    description: string
-    background: string
-    height: string
-    titleColor: string
-    textColor: string
-    buttonColor: string
-    buttonHoverColor: string
-    icon?: React.ReactNode
-  }
-
- export  interface TestimonialProps {
-    name: string
-    email: string
-    comment: string
-    rating: number
+export type TestimonialProps = {
+  name: string;
+  email: string;
+  comment: string;
+  status: string;
+  rating: number;
 }
 
 export type BlogPost = {

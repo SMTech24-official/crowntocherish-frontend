@@ -1,24 +1,39 @@
 "use client"
 
-import { TestimonialProps } from "@/types/types";
+import { useDeleteFeedbackStatusMutation, useUpdateFeedbackStatusMutation } from "@/redux/api/feedbacksApi";
+import { id, TestimonialProps } from "@/types/types";
 import { Ban, Check, Quote, Star, Trash } from "lucide-react";
+import toast from 'react-hot-toast';
 
 
+export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: TestimonialProps & id, isAdmin?: boolean, slidesToShow?: number, idx: number }) => {
 
-export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: TestimonialProps, isAdmin?: boolean, slidesToShow?: number, idx: number }) => {
+    const [updateStatus, {  error: PatchError }] = useUpdateFeedbackStatusMutation()
+    const [deleteStatus, {  error: DeleteError }] = useDeleteFeedbackStatusMutation()
 
-    const handlePublish = (actionName: string) => {
+    const handleStatusChange = async (actionName: string) => {
         console.log(`${actionName} button clicked`);
+
+        const res = await updateStatus(actionName).unwrap()
+        console.log(res);
+        if (res) {
+            toast.success(res?.message)
+        }
     };
 
-    const handleDelete = (actionName: string) => {
+    const handleDelete = async (actionName: string) => {
         console.log(`${actionName} button clicked`);
+        const res = await deleteStatus(actionName).unwrap()
+        if (res) {
+            toast.success(res?.message)
+        }
     };
-
-    const handleUnPublish = (actionName: string) => {
-        console.log(`${actionName} button clicked`);
-    };
-
+    if (DeleteError) {
+        toast.success("Deleted error")
+    }
+    if (PatchError) {
+        toast.success("Status changed error")
+    }
     return (
         <div
             key={idx}
@@ -77,23 +92,26 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
                         <div className=" flex flex-wrap items-center justify-start gap-3">
                             {/* Delete Button */}
                             <button
-                                onClick={() => handleDelete(data.email)}
+                                onClick={() => handleDelete(data._id)}
                                 className="flex items-center md:px-3 px-2  py-2 bg-red-800 text-white"
                             >
                                 <Trash className="mr-1 w-4 h-4" /> <span>Delete</span>
                             </button>
-                            <button
-                                onClick={() => handlePublish(data.email)}
-                                className="flex items-center md:px-3 px-2  py-2 bg-green-800 text-white"
-                            >
-                                <Check className="mr-1 w-4 h-4" /> <span>Publish</span>
-                            </button>
-                            <button
-                                onClick={() => handleUnPublish(data.email)}
-                                className="flex items-center md:px-3 px-2  py-2 bg-red-600 text-white"
-                            >
-                                <Ban className="mr-1 w-4 h-4" /> <span>UnPublish</span>
-                            </button>
+                            {
+                                data.status == "published" ? <button
+                                    onClick={() => handleStatusChange(data._id)}
+                                    className="flex items-center md:px-3 px-2  py-2 bg-red-600 text-white"
+                                >
+                                    <Ban className="mr-1 w-4 h-4" /> <span>UnPublish</span>
+                                </button> : <button
+                                    onClick={() => handleStatusChange(data._id)}
+                                    className="flex items-center md:px-3 px-2  py-2 bg-green-800 text-white"
+                                >
+                                    <Check className="mr-1 w-4 h-4" /> <span>Publish</span>
+                                </button>
+                            }
+
+
                         </div>
                     )
                 }

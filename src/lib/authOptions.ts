@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const admin = {
   email: "tajisan789@gmail.com",
   password: "123456",
-  role: "admin",
+  role: "user",
 };
 
 export const authOptions = {
@@ -67,6 +67,7 @@ export const authOptions = {
       console.log({ token, account, user });
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (account) {
+        console.log(token);
         token.role = user.role;
       }
       return token;

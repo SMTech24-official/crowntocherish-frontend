@@ -8,8 +8,8 @@ import toast from 'react-hot-toast';
 
 export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: TestimonialProps & id, isAdmin?: boolean, slidesToShow?: number, idx: number }) => {
 
-    const [updateStatus, {  error: PatchError }] = useUpdateFeedbackStatusMutation()
-    const [deleteStatus, {  error: DeleteError }] = useDeleteFeedbackStatusMutation()
+    const [updateStatus, { error: PatchError }] = useUpdateFeedbackStatusMutation()
+    const [deleteStatus, { error: DeleteError }] = useDeleteFeedbackStatusMutation()
 
     const handleStatusChange = async (actionName: string) => {
         console.log(`${actionName} button clicked`);
@@ -110,8 +110,6 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
                                     <Check className="mr-1 w-4 h-4" /> <span>Publish</span>
                                 </button>
                             }
-
-
                         </div>
                     )
                 }

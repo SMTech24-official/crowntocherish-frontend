@@ -11,6 +11,7 @@ import { id, TestimonialProps } from '@/types/types';
 
 const FeedBacksPage =  () => {
     const { data: testimonials, isLoading } = useGetAllFeedbacksQuery(undefined);
+    console.log(testimonials);
     if(isLoading){
         return <p className='h-screen w-full flex items-center justify-center'>Loading....</p>
     }
@@ -23,7 +24,7 @@ const FeedBacksPage =  () => {
             />
             <Card className='mt-10'>
                 <CardHeader>
-                    <CardTitle>Total FeedBacks</CardTitle>
+                    <CardTitle>Total FeedBacks {testimonials?.data.length}</CardTitle>
                 </CardHeader>
                 <CardContent className='grid lg:grid-cols-3 grid-cols-1 gap-4'>
                     {

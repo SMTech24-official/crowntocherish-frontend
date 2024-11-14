@@ -6,28 +6,9 @@ export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_URL,
-    credentials: 'include', 
+    credentials: "include",
   }),
-  
+
   endpoints: () => ({}),
-  tagTypes: [
-    "feedbacks",
-
-
-    "Users",
-    "Auth",
-    "Blogs",
-    "Garages",
-    "Brands",
-    "Products",
-    "Reviews",
-    "Wishlist",
-    "Biddings",
-    "Vehicles",
-    "payment",
-    "messages",
-    "chat",
-    "chatroom",
-    "paymentInfo",
-  ],
+  tagTypes: ["feedbacks", "subscriber"],
 });

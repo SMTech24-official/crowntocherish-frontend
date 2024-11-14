@@ -23,6 +23,11 @@ export type TestimonialProps = {
   rating: number;
 }
 
+export type Email = {
+  email: string
+  time?: Date
+}
+
 export type BlogPost = {
   title: string;
   slug: string;

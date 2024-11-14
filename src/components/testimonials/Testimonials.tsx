@@ -7,11 +7,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import SectionHeader from "../shared/sectionHeader/SectionHeader"
 import { testimonials } from "@/lib/testimonials"
 import { TestimonialsCard } from "../testimonialsCard/TestimonialsCard"
+import { useGetPublishedFeedbackQuery } from "@/redux/api/feedbacksApi"
+import { id, TestimonialProps } from "@/types/types"
 
 
 
 
 export default function Testimonials() {
+    const { data: PublishedTestimonials } = useGetPublishedFeedbackQuery("published");
+
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isAnimating, setIsAnimating] = useState(false)
     const [slidesToShow, setSlidesToShow] = useState(3)
@@ -82,7 +86,7 @@ export default function Testimonials() {
                             style={{ transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)` }}
                         >
                             {
-                                testimonials?.map((data, idx) => <TestimonialsCard slidesToShow={slidesToShow} idx={idx} data={data} key={idx} />)
+                                PublishedTestimonials?.data?.map((data : TestimonialProps & id, idx: number) => <TestimonialsCard slidesToShow={slidesToShow} idx={idx} data={data} key={idx} />)
                             }
                         </div>
                     </div>

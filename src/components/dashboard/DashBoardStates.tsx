@@ -7,7 +7,7 @@ import { MessageSquareDot, MessageSquareHeart, UsersRound } from 'lucide-react'
 // Utility function to format currency
 const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
-        minimumFractionDigits: 2,
+        minimumFractionDigits: 0,
     }).format(value)
 }
 
@@ -46,7 +46,7 @@ const AnimatedNumber = ({ value, duration = 1000 }: { value: number; duration?: 
 }
 
 
-export default function Component() {
+export default function Component({publishedFeedbacks, TotalFeedBacks, subscriber} : {publishedFeedbacks: number, TotalFeedBacks: number, subscriber: number}) {
     return (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <Card className="overflow-hidden">
@@ -63,7 +63,7 @@ export default function Component() {
                 </CardHeader>
                 <CardContent>
                     <div className="text-2xl font-bold">
-                        <AnimatedNumber value={1000} />
+                        <AnimatedNumber value={TotalFeedBacks || 0} />
                     </div>
                 </CardContent>
             </Card>
@@ -81,7 +81,7 @@ export default function Component() {
                 </CardHeader>
                 <CardContent>
                     <div className="text-2xl font-bold">
-                        <AnimatedNumber value={1000} />
+                        <AnimatedNumber value={publishedFeedbacks || 0} />
                     </div>
                 </CardContent>
             </Card>
@@ -99,7 +99,7 @@ export default function Component() {
                 </CardHeader>
                 <CardContent>
                     <div className="text-2xl font-bold">
-                        <AnimatedNumber value={1000} />
+                        <AnimatedNumber value={subscriber || 0} />
                     </div>
                 </CardContent>
             </Card>

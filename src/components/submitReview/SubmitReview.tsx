@@ -10,7 +10,7 @@ import Image from 'next/image'
 import feedbakImage from "@/assets/portrait-smiling-male-doctor-dressed-uniform_171337-110-removebg-preview.png"
 import { useCreateFeedbackMutation } from '@/redux/api/feedbacksApi'
 import toast from 'react-hot-toast'
-import { id, TestimonialProps } from '@/types/types'
+import { TestimonialProps } from '@/types/types'
 
 export default function AnimatedPinkFeedbackForm() {
     const [rating, setRating] = useState(0)

@@ -1,27 +1,32 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import {  Loader2, CheckCircle } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import feedbakImage from "@/assets/pink-envelopes-with-heart-like-c.jpg"
+import { Email } from '@/types/types'
+import toast from 'react-hot-toast'
+import { useCreateSubscriberMutation } from '@/redux/api/subscriberApi'
 
 export default function Subscription() {
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [isSubmitted, setIsSubmitted] = useState(false)
+
+    const [subscribed, { isLoading }] = useCreateSubscriberMutation()
+    // Form data state
     const [email, setEmail] = useState('')
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        setIsSubmitting(true)
-        setTimeout(() => {
-            setIsSubmitting(false)
-            setIsSubmitted(true)
-            setTimeout(() => setIsSubmitted(false), 3000)
-            setEmail('') // Clear email after submission
-        }, 1500)
+        const newEmail: Email = {
+            email: email,
+        }
+        const res = await subscribed(newEmail)
+        console.log(res);
+        if (res?.data.data.acknowledged) {
+            toast.success("Thank You So Much For your Feedback")
+        }
     }
 
     return (
@@ -68,9 +73,9 @@ export default function Subscription() {
                                     <Button
                                         type="submit"
                                         className="bg-pink-500 hover:bg-pink-600 text-white"
-                                        disabled={isSubmitting}
+                                        disabled={isLoading}
                                     >
-                                        {isSubmitting ? (
+                                        {isLoading ? (
                                             <>
                                                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                                 Subscribing...
@@ -88,23 +93,10 @@ export default function Subscription() {
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ delay: 0.2, duration: 0.5 }}
                         >
-                            <Image src={feedbakImage} alt="portrait smiling male doctor" className="w-full h-auto object-contain rounded-md p-4"  />
+                            <Image src={feedbakImage} alt="portrait smiling male doctor" className="w-full h-auto object-contain rounded-md p-4" />
                         </motion.div>
                     </div>
                 </motion.div>
-                <AnimatePresence>
-                    {isSubmitted && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 50 }}
-                            className="fixed bottom-4 right-4 bg-yellow-300 text-white p-4 rounded-lg shadow-lg flex items-center"
-                        >
-                            <CheckCircle className="mr-2" />
-                            Thank you for subscribing!
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </div>
         </section>
     )

@@ -1,28 +1,40 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Star, Loader2, CheckCircle } from 'lucide-react'
+import { Star, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import feedbakImage from "@/assets/portrait-smiling-male-doctor-dressed-uniform_171337-110-removebg-preview.png"
+import { useCreateFeedbackMutation } from '@/redux/api/feedbacksApi'
+import toast from 'react-hot-toast'
+import { id, TestimonialProps } from '@/types/types'
 
 export default function AnimatedPinkFeedbackForm() {
-    const [isSubmitting, setIsSubmitting] = useState(false)
     const [rating, setRating] = useState(0)
-    const [isSubmitted, setIsSubmitted] = useState(false)
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const [updateStatus, { isLoading }] = useCreateFeedbackMutation()
+    // Form data state
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [feedback, setFeedback] = useState('')
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        setIsSubmitting(true)
-        setTimeout(() => {
-            setIsSubmitting(false)
-            setIsSubmitted(true)
-            setTimeout(() => setIsSubmitted(false), 3000)
-            setRating(0)
-        }, 1500)
+        const feedbackData: TestimonialProps = {
+            name: name,
+            email: email,
+            comment: feedback,
+            rating: rating,
+            status: "unpublished"
+        }
+        const res = await updateStatus(feedbackData)
+        console.log(res);
+        if (res?.data.data.acknowledged) {
+            toast.success("Thank You So Much For your Feedback")
+        }
     }
 
     return (
@@ -51,8 +63,21 @@ export default function AnimatedPinkFeedbackForm() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.4, duration: 0.5 }}
                                 >
-                                    <Input placeholder="Your name" required className="flex-1" />
-                                    <Input type="email" placeholder="Your email" required className="flex-1" />
+                                    <Input
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder="Your name"
+                                        required
+                                        className="flex-1"
+                                    />
+                                    <Input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="Your email"
+                                        required
+                                        className="flex-1"
+                                    />
                                 </motion.div>
                                 <motion.div
                                     className="flex items-center justify-start space-x-1"
@@ -79,6 +104,8 @@ export default function AnimatedPinkFeedbackForm() {
                                     transition={{ delay: 0.6, duration: 0.5 }}
                                 >
                                     <Textarea
+                                        value={feedback}
+                                        onChange={(e) => setFeedback(e.target.value)}
                                         placeholder="Your feedback..."
                                         className="min-h-[60px] max-h-[80px] resize-none"
                                         required
@@ -93,9 +120,9 @@ export default function AnimatedPinkFeedbackForm() {
                                     <Button
                                         type="submit"
                                         className="bg-pink-500 hover:bg-pink-600 text-white"
-                                        disabled={isSubmitting}
+                                        disabled={isLoading}
                                     >
-                                        {isSubmitting ? (
+                                        {isLoading ? (
                                             <>
                                                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                                 Sending...
@@ -117,19 +144,6 @@ export default function AnimatedPinkFeedbackForm() {
                         </motion.div>
                     </div>
                 </motion.div>
-                <AnimatePresence>
-                    {isSubmitted && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 50 }}
-                            className="fixed bottom-4 right-4 bg-yellow-300 text-white p-4 rounded-lg shadow-lg flex items-center"
-                        >
-                            <CheckCircle className="mr-2" />
-                            Thank you for your feedback!
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </div>
         </section>
     )

@@ -12,6 +12,15 @@ const feedBacksApi = baseApi.injectEndpoints({
       },
       providesTags: ["feedbacks"],
     }),
+    getPublishedFeedback: build.query({
+      query: (id) => {
+        return {
+          url: `/feedbacks/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["feedbacks"],
+    }),
     updateFeedbackStatus: build.mutation({
       query: (id: string) => {
         console.log(id);
@@ -34,7 +43,19 @@ const feedBacksApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["feedbacks"],
     }),
+    createFeedback: build.mutation({
+      query: (newFeedback) => {
+        console.log(newFeedback); // Log the new feedback to the console
+        return {
+          url: `/feedbacks`, // Adjust the URL if needed
+          method: "POST", // Use POST method for creating feedback
+          body: newFeedback, // Send the new feedback object in the request body
+        };
+      },
+      invalidatesTags: ["feedbacks"], // Invalidate the cache for feedbacks
+    }),
+    
   }),
 });
 
-export const { useGetAllFeedbacksQuery, useUpdateFeedbackStatusMutation, useDeleteFeedbackStatusMutation } = feedBacksApi;
+export const { useGetAllFeedbacksQuery, useGetPublishedFeedbackQuery, useCreateFeedbackMutation, useUpdateFeedbackStatusMutation, useDeleteFeedbackStatusMutation } = feedBacksApi;

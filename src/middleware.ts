@@ -9,8 +9,6 @@ export async function middleware(request: NextRequest) {
     req: request,
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   });
-  console.log(token?.role);
-  console.log("middlewarew");
   // for production
   // const token =  request.cookies.get("__Secure-next-auth.session-token")?.value;
   if (!token) {

@@ -1,16 +1,14 @@
 import React, { ReactNode } from "react";
-import Providers from "./newProviders";
 
 
 const layout = ({ children }: { children: ReactNode }) => {
     return (
-        <Providers>
-            <div className=" flex h-full">
-                <div className="w-full">
-                    {children}
-                </div>
+
+        <div className=" flex h-full">
+            <div className="w-full">
+                {children}
             </div>
-        </Providers>
+        </div>
     );
 };
 

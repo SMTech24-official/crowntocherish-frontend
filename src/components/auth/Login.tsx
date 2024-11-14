@@ -25,8 +25,6 @@ export default function AdminLogin() {
             email: email,
             password: password,
             redirect: false,
-            // callbackUrl: "/admin/dashboard",
-
         });
         if (result && result.ok) {
             router.push("/admin/dashboard"); // Use router for navigation

@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SessionStrategy } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import axios from "axios";
 
-
-const admin = {
-  email: "tajisan789@gmail.com",
-  password: "123456",
-  role: "admin",
-};
-
+const url = process.env.NEXT_PUBLIC_URL;
 export const authOptions = {
   secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   session: {
@@ -35,14 +30,15 @@ export const authOptions = {
           return null;
         }
         const { email, password } = credentials;
+        const response = await axios.post(`${url}/admin`, { email, password });
 
-        if (email === admin.email && password === admin.password) {
+        if (response.status === 200) {
+          // If login is successful, return the user object
           const user = {
-            id: "admin-unique-id",
-            name: "Tahsin Zaman",
-            email: email,
-            password: password,
-            role: admin.role,
+            id: response.data.data._id, // Replace with dynamic user ID
+            name: response.data.data.name, // Replace with dynamic user name
+            email: response.data.data.email,
+            role: response.data.data.role, // Assuming the backend returns role info
           };
           return user;
         }
@@ -64,10 +60,8 @@ export const authOptions = {
       account: any;
       user: any;
     }) {
-      console.log({ token, account, user });
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (account) {
-        console.log(token);
         token.role = user.role;
       }
       return token;

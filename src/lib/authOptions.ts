@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const admin = {
   email: "tajisan789@gmail.com",
   password: "123456",
-  role: "user",
+  role: "admin",
 };
 
 export const authOptions = {

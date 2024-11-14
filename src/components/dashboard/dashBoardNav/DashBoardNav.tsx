@@ -91,8 +91,8 @@ export default function DashboardNav() {
                                 <AvatarFallback className='bg-slate-200'>UN</AvatarFallback>
                             </Avatar>
                             <div>
-                                <p className='font-medium'>User Name</p>
-                                <p className='text-xs text-gray-500 my-1'>user@example.com</p>
+                                <p className='font-medium'>Admin Name</p>
+                                <p className='text-xs text-gray-500 my-1'>admin@gmail.com</p>
                                 <div className='flex items-center space-x-1'>
                                     <span className='w-2 h-2 bg-green-500 rounded-full'></span>
                                     <p className='text-xs text-gray-500'>Active</p>

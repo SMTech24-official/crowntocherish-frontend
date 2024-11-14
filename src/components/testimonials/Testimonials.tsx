@@ -38,14 +38,14 @@ export default function Testimonials() {
     const nextTestimonial = () => {
         if (!isAnimating) {
             setIsAnimating(true)
-            setCurrentIndex((prev) => (prev + 1) % (PublishedTestimonials.length - slidesToShow + 1))
+            setCurrentIndex((prev) => (prev + 1) % (PublishedTestimonials?.length - slidesToShow + 1))
         }
     }
 
     const previousTestimonial = () => {
         if (!isAnimating) {
             setIsAnimating(true)
-            setCurrentIndex((prev) => (prev - 1 + PublishedTestimonials.length - slidesToShow + 1) % (PublishedTestimonials.length - slidesToShow + 1))
+            setCurrentIndex((prev) => (prev - 1 + PublishedTestimonials?.length - slidesToShow + 1) % (PublishedTestimonials?.length - slidesToShow + 1))
         }
     }
 

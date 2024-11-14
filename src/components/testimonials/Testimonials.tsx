@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import SectionHeader from "../shared/sectionHeader/SectionHeader"
-import { testimonials } from "@/lib/testimonials"
 import { TestimonialsCard } from "../testimonialsCard/TestimonialsCard"
 import { useGetPublishedFeedbackQuery } from "@/redux/api/feedbacksApi"
 import { id, TestimonialProps } from "@/types/types"
@@ -39,14 +38,14 @@ export default function Testimonials() {
     const nextTestimonial = () => {
         if (!isAnimating) {
             setIsAnimating(true)
-            setCurrentIndex((prev) => (prev + 1) % (testimonials.length - slidesToShow + 1))
+            setCurrentIndex((prev) => (prev + 1) % (PublishedTestimonials.length - slidesToShow + 1))
         }
     }
 
     const previousTestimonial = () => {
         if (!isAnimating) {
             setIsAnimating(true)
-            setCurrentIndex((prev) => (prev - 1 + testimonials.length - slidesToShow + 1) % (testimonials.length - slidesToShow + 1))
+            setCurrentIndex((prev) => (prev - 1 + PublishedTestimonials.length - slidesToShow + 1) % (PublishedTestimonials.length - slidesToShow + 1))
         }
     }
 

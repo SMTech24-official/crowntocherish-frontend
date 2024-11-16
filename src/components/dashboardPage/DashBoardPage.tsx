@@ -8,6 +8,7 @@ import DashBoardStates from '@/components/dashboard/DashBoardStates'
 import { useGetAllFeedbacksQuery, useGetPublishedFeedbackQuery } from '@/redux/api/feedbacksApi'
 import { id, TestimonialProps } from '@/types/types'
 import { useGetAllSubscriberQuery } from '@/redux/api/subscriberApi'
+import Loader from '../loader/Loader'
 
 
 
@@ -18,7 +19,7 @@ export default function DashboardPage() {
     const { data: initialSubscribers, isLoading: isLoading2 } = useGetAllSubscriberQuery(undefined);
     const { data: testimonials, isLoading: isLoading3 } = useGetAllFeedbacksQuery(undefined);
     if (isLoading && isLoading2 && isLoading3) {
-        return <p className='h-screen w-full flex items-center justify-center'>Loading....</p>
+        return <Loader/>
     }
 
     return (
@@ -39,7 +40,7 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent className='grid lg:grid-cols-3 grid-cols-1 gap-4'>
                     {
-                        isLoading ? <p className='h-screen w-full flex items-center justify-center'>Loading....</p> :
+                        isLoading ? <Loader/> :
                             PublishedTestimonials?.data?.map((data: TestimonialProps & id, idx: number) => <TestimonialsCard isAdmin={true} idx={idx} data={data} key={idx} />)
                     }
                 </CardContent>

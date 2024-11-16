@@ -46,12 +46,10 @@ export default function Testimonials() {
         return () => clearInterval(autoPlayTimer)
     }, [nextTestimonial])
 
-    if (isLoading) {
-        return <div className="flex justify-center items-center h-64">Loading...</div>
-    }
+
 
     return (
-        <section className="section-gap">
+        <section className="section-gap relative">
             <div className="container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -73,7 +71,7 @@ export default function Testimonials() {
                             animate={{ x: `-${currentIndex * (100 / slidesToShow)}%` }}
                             transition={{ duration: 0.5, ease: "easeInOut" }}
                         >
-                            {testimonials.map((data: TestimonialProps & id, idx: number) => (
+                            {isLoading ? <div className="flex justify-center items-center w-full">Loading..</div> : testimonials.map((data: TestimonialProps & id, idx: number) => (
                                 <TestimonialsCard
                                     slidesToShow={slidesToShow}
                                     idx={idx}

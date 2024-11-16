@@ -14,6 +14,7 @@ import { Mail, Search, Calendar, Send } from 'lucide-react'
 import DashboardHeader from '@/components/shared/dashboardHeader/DashboardHeader'
 import { useGetAllSubscriberQuery } from '@/redux/api/subscriberApi'
 import { Email, id } from '@/types/types'
+import Loader from '../loader/Loader'
 
 // Mock data for subscriber
 
@@ -31,7 +32,7 @@ export default function SubscriberPage() {
     }
 
     if (isLoading) {
-        return <p className='h-screen w-full flex items-center justify-center'>Loading....</p>
+        return <Loader/>
     }
 
 

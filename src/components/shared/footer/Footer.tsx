@@ -22,7 +22,7 @@ export default function Footer() {
         { label: "Home", href: "/" },
         { label: "About Us", href: "/about-us" },
         { label: "How It Works", href: "./#how-it-works" },
-        { label: "Services", href: "/services" },
+        { label: "Admin", href: "/admin" },
         { label: "Latest Article", href: "/articles" },
       ],
     },
@@ -31,6 +31,7 @@ export default function Footer() {
       links: [
         { label: "FAQ", href: "./#faq" },
         { label: "Contact Us", href: "/contact-us" },
+        { label: "Services", href: "/services" },
         { label: "Disclaimer", href: "/disclaimer" },
       ],
     },

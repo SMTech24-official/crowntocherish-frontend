@@ -40,7 +40,7 @@ export default function Navbar() {
             "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
             scrolled
                 ? "backdrop-blur-lg  shadow-lg py-2"
-                : " backdrop-blur-sm py-4"
+                : "backdrop-blur-lg  md:backdrop-blur-sm py-4"
         )}>
             {/* Yellow curved accent at the top */}
             {/* <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">

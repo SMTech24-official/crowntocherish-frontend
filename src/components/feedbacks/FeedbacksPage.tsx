@@ -9,13 +9,14 @@ import { Card, CardContent } from '../ui/card';
 import { TestimonialsCard } from '../testimonialsCard/TestimonialsCard';
 import { id, TestimonialProps } from '@/types/types';
 import { Star } from 'lucide-react';
+import Loader from '../loader/Loader';
 
 const FeedBacksPage = () => {
     const { data: testimonials, isLoading } = useGetAllFeedbacksQuery(undefined);
 
     console.log(testimonials);
     if (isLoading) {
-        return <p className='h-screen w-full flex items-center justify-center'>Loading....</p>
+        return <Loader/>
     }
     return (
         <div className='dashboard-containers'>

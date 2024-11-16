@@ -23,7 +23,7 @@ export default function Subscription() {
             email: email,
         }
         const res = await subscribed(newEmail)
-        console.log(res);
+        // console.log(res);
         if (res?.data?.data?.acknowledged) {
             toast.success("Thank You So Much For Subscribe")
         }

@@ -23,7 +23,7 @@ const feedBacksApi = baseApi.injectEndpoints({
     }),
     updateFeedbackStatus: build.mutation({
       query: (id: string) => {
-        console.log(id);
+        // console.log(id);
         return {
           url: `/feedbacks`, // Adjust the URL if needed
           method: "PATCH",
@@ -34,7 +34,7 @@ const feedBacksApi = baseApi.injectEndpoints({
     }),
     deleteFeedbackStatus: build.mutation({
       query: (id: string) => {
-        console.log(id);
+        // console.log(id);
         return {
           url: `/feedbacks`, // Adjust the URL if needed
           method: "DELETE",
@@ -45,7 +45,7 @@ const feedBacksApi = baseApi.injectEndpoints({
     }),
     createFeedback: build.mutation({
       query: (newFeedback) => {
-        console.log(newFeedback); // Log the new feedback to the console
+        // console.log(newFeedback); // Log the new feedback to the console
         return {
           url: `/feedbacks`, // Adjust the URL if needed
           method: "POST", // Use POST method for creating feedback

@@ -42,7 +42,7 @@ export default function DashboardNav() {
         }
     }, [navRef])
 
-    console.log(session);
+    // console.log(session);
 
     return (
         <div ref={navRef} className="relative z-40 h-full">

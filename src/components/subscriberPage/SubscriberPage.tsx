@@ -21,14 +21,13 @@ import Loader from '../loader/Loader'
 export default function SubscriberPage() {
     const [searchTerm, setSearchTerm] = useState('')
     const { data: initialSubscribers, isLoading } = useGetAllSubscriberQuery(undefined);
-    console.log(initialSubscribers);
+    // console.log(initialSubscribers);
     const filteredSubscribers = initialSubscribers?.data?.filter((subscriber: Email & id) =>
         subscriber.email.toLowerCase().includes(searchTerm.toLowerCase())
     )
 
     const handleSendEmail = (email: string) => {
-        console.log(`Sending email to ${email}`)
-
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`, '_blank');
     }
 
     if (isLoading) {

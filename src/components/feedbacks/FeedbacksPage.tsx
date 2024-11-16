@@ -14,7 +14,7 @@ import Loader from '../loader/Loader';
 const FeedBacksPage = () => {
     const { data: testimonials, isLoading } = useGetAllFeedbacksQuery(undefined);
 
-    console.log(testimonials);
+    // console.log(testimonials);
     if (isLoading) {
         return <Loader/>
     }

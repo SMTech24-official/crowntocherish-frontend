@@ -12,17 +12,17 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
     const [deleteStatus, { error: DeleteError }] = useDeleteFeedbackStatusMutation()
 
     const handleStatusChange = async (actionName: string) => {
-        console.log(`${actionName} button clicked`);
+        // console.log(`${actionName} button clicked`);
 
         const res = await updateStatus(actionName).unwrap()
-        console.log(res);
+        // console.log(res);
         if (res) {
             toast.success(res?.message)
         }
     };
 
     const handleDelete = async (actionName: string) => {
-        console.log(`${actionName} button clicked`);
+        // console.log(`${actionName} button clicked`);
         const res = await deleteStatus(actionName).unwrap()
         if (res) {
             toast.success(res?.message)

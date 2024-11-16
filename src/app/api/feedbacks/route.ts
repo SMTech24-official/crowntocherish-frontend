@@ -55,7 +55,7 @@ export async function POST(request: Request) {
 export async function DELETE(request: Request) {
   try {
     const { id } = await request.json(); // Assuming the ID is provided in the JSON body
-    console.log(id);
+    // console.log(id);
     if (!id) {
       return new Response(
         JSON.stringify({ status: 400, message: "ID is required for deletion" }),
@@ -93,7 +93,7 @@ export async function DELETE(request: Request) {
 export async function PATCH(request: Request) {
   try {
     const { id } = await request.json(); // Assume the ID is provided in the JSON body
-    console.log(id);
+    // console.log(id);
 
     if (!id) {
       return new Response(

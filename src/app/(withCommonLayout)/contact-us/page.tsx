@@ -70,7 +70,7 @@ export default function ContactPage() {
         'd5dJg25GGc6KH0ycL'
       )
 
-      console.log(result.text)
+      // console.log(result.text)
       setSubmitStatus('success')
       setFormData({
         firstName: '',

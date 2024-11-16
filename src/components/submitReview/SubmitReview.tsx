@@ -31,7 +31,7 @@ export default function AnimatedPinkFeedbackForm() {
             status: "unpublished"
         }
         const res = await updateStatus(feedbackData)
-        console.log(res);
+        // console.log(res);
         if (res?.data.data.acknowledged) {
             toast.success("Thank You So Much For your Feedback")
         }

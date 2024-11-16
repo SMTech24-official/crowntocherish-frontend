@@ -7,9 +7,15 @@ export const GET = async () => {
     const feedBackCollections = await db.collection("feedbacks");
     const res = await feedBackCollections.find().toArray();
     if (res) {
+      const avg_rating = parseFloat(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (res.reduce((acc: any, data: any) => acc + data.rating, 0) / res.length).toFixed(2)
+      );
       return Response.json({
         status: 200,
         data: res,
+        length: res?.length,
+        avg_rating: avg_rating,
       });
     }
     return Response.json({
@@ -84,7 +90,6 @@ export async function DELETE(request: Request) {
   }
 }
 
-
 export async function PATCH(request: Request) {
   try {
     const { id } = await request.json(); // Assume the ID is provided in the JSON body
@@ -116,7 +121,8 @@ export async function PATCH(request: Request) {
     }
 
     // Determine new status based on current status
-    const newStatus = feedback.status === "published" ? "unpublished" : "published";
+    const newStatus =
+      feedback.status === "published" ? "unpublished" : "published";
 
     // Update the document with the new status
     const res = await feedBackCollections.updateOne(

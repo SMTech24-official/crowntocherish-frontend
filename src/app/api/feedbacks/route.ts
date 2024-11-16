@@ -128,7 +128,7 @@ export async function PATCH(request: Request) {
       return new Response(
         JSON.stringify({
           status: 200,
-          message: `Feedback ${feedback.status}.`,
+          message: `Feedback ${newStatus}.`,
         }),
         { status: 200, headers: { "Content-Type": "application/json" } }
       );

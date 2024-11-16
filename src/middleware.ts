@@ -9,19 +9,20 @@ export async function middleware(request: NextRequest) {
     req: request,
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   });
+  console.log(token);
   // for production
   // const token =  request.cookies.get("__Secure-next-auth.session-token")?.value;
   if (!token) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-  // if (token.role !== "admin") {
-  //   return NextResponse.redirect(new URL("/admin", request.url));
-  // }
+  if (token.role !== "admin") {
+    return NextResponse.redirect(new URL("/admin", request.url));
+  }
   return NextResponse.next();
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/admin/dashboard", "/admin/dashboard/subscriber", "/admin/dashboard/feedbacks"],
+  matcher: ["/admin/dashboard", "/admin/dashboard/subscriber", "/admin/dashboard/feedback", "/api/feedbacks", "/api/subscriber"],
 };
 

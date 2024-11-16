@@ -1,11 +1,4 @@
-import { articles } from "@/lib/blogs";
 import { connectDB } from "@/lib/connectDB";
-
-const stored = [...articles];
-
-export const GET = async () => {
-  return Response.json(stored, {});
-};
 
 export async function POST(request: Request) {
   const admin = await request.json();

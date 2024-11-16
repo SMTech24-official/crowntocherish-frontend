@@ -28,6 +28,7 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
             toast.success(res?.message)
         }
     };
+    
     if (DeleteError) {
         toast.success("Deleted error")
     }
@@ -37,12 +38,12 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
     return (
         <div
             key={idx}
-            className={`flex-shrink-0 px-4 py-2 ${slidesToShow === 3 ? 'w-1/3 h-[280px] overflow-hidden' : slidesToShow === 2 ? 'w-1/2 ' : 'w-full'
+            className={`flex-shrink-0 px-4 py-2 ${slidesToShow === 3 ? 'w-1/3 h-[280px] ' : slidesToShow === 2 ? 'w-1/2 ' : 'w-full'
                 }`}
         >
-            <div className="relative w-full h-full p-6 rounded-xl border overflow-hidden">
-                <div className="relative z-10">
-                    <div className="flex  justify-between">
+            <div className="relative flex flex-col  p-6 rounded-xl border h-full">
+                <div className="relative z-10 flex-1 overflow-hidden">
+                    <div className="flex justify-between">
                         <div>
                             <div className="flex items-center gap-3 mb-4">
                                 <div>
@@ -62,31 +63,8 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
                         isAdmin && <p className="text-text_default mb-6 text-sm md:text-base flex-1 font-semibold">{data.email}</p>
                     }
 
-                    <p className="text-text_default mb-6 text-sm md:text-base flex-1 ">&quot;{data.comment}&quot;</p>
+                    <p className="text-text_default mb-6 text-sm md:text-base ">&quot;{data.comment}&quot;</p>
                 </div>
-                {/* <div class="relative w-full h-full p-6 rounded-xl border overflow-hidden animate-pulse">
-                    <div class="relative z-10">
-                        <div class="flex justify-between">
-                            <div>
-                                <div class="flex items-center gap-3 mb-4">
-                                    <div>
-                                        <div class="h-4 bg-gray-200 rounded w-1/2"></div>
-                                    </div>
-                                </div>
-                                <div class="flex mb-4 gap-1">
-                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
-                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
-                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
-                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
-                                    <div class="h-4 bg-gray-200 w-4 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="h-10 w-10 bg-gray-200 rounded"></div>
-                        </div>
-                        <div class="h-4 bg-gray-200 rounded w-full mb-6"></div>
-                        <div class="h-4 bg-gray-200 rounded w-full mb-6"></div>
-                    </div>
-                </div> */}
                 {
                     isAdmin && (
                         <div className=" flex flex-wrap items-center justify-start gap-3">

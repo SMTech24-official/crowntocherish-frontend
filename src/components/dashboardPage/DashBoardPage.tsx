@@ -40,7 +40,7 @@ export default function DashboardPage() {
                 <CardContent className='grid lg:grid-cols-3 grid-cols-1 gap-4'>
                     {
                         isLoading ? <p className='h-screen w-full flex items-center justify-center'>Loading....</p> :
-                            PublishedTestimonials.data?.map((data: TestimonialProps & id, idx: number) => <TestimonialsCard isAdmin={true} idx={idx} data={data} key={idx} />)
+                            PublishedTestimonials?.data?.map((data: TestimonialProps & id, idx: number) => <TestimonialsCard isAdmin={true} idx={idx} data={data} key={idx} />)
                     }
                 </CardContent>
             </Card>

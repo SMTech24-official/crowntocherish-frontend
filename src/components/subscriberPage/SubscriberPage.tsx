@@ -79,7 +79,7 @@ export default function SubscriberPage() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {filteredSubscribers.map((subscriber: Email & id) => (
+                        {filteredSubscribers?.map((subscriber: Email & id) => (
                             <TableRow key={subscriber._id}>
                                 <TableCell className="font-medium">{subscriber.email}</TableCell>
                                 <TableCell className='text-nowrap'>

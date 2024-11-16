@@ -38,7 +38,7 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
     return (
         <div
             key={idx}
-            className={`flex-shrink-0 px-4 py-2 ${slidesToShow === 3 ? 'w-1/3 h-[280px] ' : slidesToShow === 2 ? 'w-1/2 ' : 'w-full'
+            className={`flex-shrink-0 px-4 py-2 ${slidesToShow === 3 ? 'w-1/3 h-[250px] md:h-[300px] ' : slidesToShow === 2 ? 'w-1/2 ' : 'w-full'
                 }`}
         >
             <div className="relative flex flex-col  p-6 rounded-xl border h-full">

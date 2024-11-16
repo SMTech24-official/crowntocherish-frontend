@@ -53,7 +53,6 @@ export default function Component() {
     })
 
     const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
-    const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
     useEffect(() => {
         const unsubscribe = scrollYProgress.onChange(v => {
@@ -81,7 +80,7 @@ export default function Component() {
                         subtitle="Embark on a seamless exploration of your medication information with our AI-powered platform. Follow these simple steps to unlock a wealth of knowledge about your prescriptions."
                     />
                 </motion.div>
-                <div className="relative max-w-4xl mx-auto">
+                <div className="relative max-w-4xl mx-auto overflow-hidden">
                     {/* Desktop Progress Bar */}
                     <motion.div className="hidden md:block absolute left-0 top-0 bottom-0 w-1 bg-pink-200">
                         <motion.div
@@ -143,13 +142,6 @@ export default function Component() {
                             </motion.div>
                         </motion.div>
                     ))}
-                    {/* Mobile Progress Bar */}
-                    <motion.div className="md:hidden fixed top-0 left-0 right-0 h-2 bg-pink-200 z-50">
-                        <motion.div
-                            className="absolute left-0 top-0 h-full bg-pink-400"
-                            style={{ width: progressWidth }}
-                        />
-                    </motion.div>
                 </div>
             </div>
         </div>

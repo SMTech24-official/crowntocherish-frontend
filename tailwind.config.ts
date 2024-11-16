@@ -24,7 +24,7 @@ const config: Config = {
         text_title: "#DB2777",
         text_default: "#000000",
         button_bg: "#DB2777",
-        button_hover_bg: "#BE185D",
+        button_hover_bg: "#E30B5D",
         secondary: "#ffe88c",
         // section_bg: "#FFE4E6",
         section_bg: "#FFFFFF",

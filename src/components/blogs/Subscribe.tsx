@@ -24,9 +24,10 @@ export default function Subscription() {
         }
         const res = await subscribed(newEmail)
         console.log(res);
-        if (res?.data.data.acknowledged) {
-            toast.success("Thank You So Much For your Feedback")
+        if (res?.data?.data?.acknowledged) {
+            toast.success("Thank You So Much For Subscribe")
         }
+        else toast.error("You have already subscribed")
     }
 
     return (

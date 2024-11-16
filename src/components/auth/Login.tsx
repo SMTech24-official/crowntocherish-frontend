@@ -4,20 +4,18 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import {  LockIcon, UserIcon, X } from "lucide-react"
+import { LockIcon, UserIcon } from "lucide-react"
 import Image from "next/image"
 import LogInImage from "@/assets/login.jpg"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { motion, AnimatePresence } from 'framer-motion'
-// import { useRouter } from "next/navigation"
+import toast from "react-hot-toast"
 
 export default function AdminLogin() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const router = useRouter()
-    const [isSubmitted, setIsSubmitted] = useState(false)
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -28,8 +26,9 @@ export default function AdminLogin() {
         });
         if (result && result.ok) {
             router.push("/admin/dashboard"); // Use router for navigation
+            toast.success('WellCome Admin')
         } else {
-            setIsSubmitted(true)
+            toast.error("Wrong Credential")
         }
     }
 
@@ -110,19 +109,6 @@ export default function AdminLogin() {
                     Manage and monitor your AI-powered medication information system
                 </p>
             </div>
-            <AnimatePresence>
-                {isSubmitted && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 50 }}
-                        className="fixed bottom-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg flex items-center"
-                    >
-                        <X className="mr-2" />
-                        Wrong Credentials
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </div>
     )
 }

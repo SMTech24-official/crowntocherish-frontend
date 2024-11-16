@@ -59,6 +59,7 @@ export default function ContactPage() {
     setSubmitStatus('idle')
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const result = await emailjs.send(
         'service_qyac2ww', 'template_an21w53',
         {

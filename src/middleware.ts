@@ -2,27 +2,39 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
-  // for locally
   const token = await getToken({
     req: request,
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   });
-  // console.log(token);
-  // for production
-  // const token =  request.cookies.get("__Secure-next-auth.session-token")?.value;
+
+  const method = request.method;
+
+  // Allow POST requests without token validation
+  if (method === "POST") {
+    return NextResponse.next();
+  }
+
+  // Require token for GET and other methods
   if (!token) {
     return NextResponse.redirect(new URL("/", request.url));
   }
+
+  // Optional: Role-based redirection for admin paths
   if (token.role !== "admin") {
     return NextResponse.redirect(new URL("/admin", request.url));
   }
+
   return NextResponse.next();
 }
 
-// See "Matching Paths" below to learn more
+// Matching specific paths
 export const config = {
-  matcher: ["/admin/dashboard", "/admin/dashboard/subscriber", "/admin/dashboard/feedback", "/api/feedbacks", "/api/subscriber"],
+  matcher: [
+    "/admin/dashboard",
+    "/admin/dashboard/subscriber",
+    "/admin/dashboard/feedback",
+    "/api/feedbacks",
+    "/api/subscriber",
+  ],
 };
-

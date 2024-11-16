@@ -71,19 +71,19 @@ export const TestimonialsCard = ({ data, idx, slidesToShow, isAdmin }: { data: T
                             {/* Delete Button */}
                             <button
                                 onClick={() => handleDelete(data._id)}
-                                className="flex items-center md:px-3 px-2  py-2 bg-red-800 text-white"
+                                className="flex items-center md:px-3 px-2  py-2 bg-[#990012] text-white rounded-lg"
                             >
                                 <Trash className="mr-1 w-4 h-4" /> <span>Delete</span>
                             </button>
                             {
                                 data.status == "published" ? <button
                                     onClick={() => handleStatusChange(data._id)}
-                                    className="flex items-center md:px-3 px-2  py-2 bg-red-600 text-white"
+                                    className="flex items-center md:px-3 px-2  py-2 bg-[#F67280] text-white rounded-lg"
                                 >
                                     <Ban className="mr-1 w-4 h-4" /> <span>UnPublish</span>
                                 </button> : <button
                                     onClick={() => handleStatusChange(data._id)}
-                                    className="flex items-center md:px-3 px-2  py-2 bg-green-800 text-white"
+                                    className="flex items-center md:px-3 px-2  py-2 bg-[#829F82] text-white rounded-lg"
                                 >
                                     <Check className="mr-1 w-4 h-4" /> <span>Publish</span>
                                 </button>

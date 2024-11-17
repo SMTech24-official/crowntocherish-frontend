@@ -16,23 +16,24 @@ const FeedBacksPage = () => {
 
     // console.log(testimonials);
     if (isLoading) {
-        return <Loader/>
+        return <Loader />
     }
     return (
         <div className='dashboard-containers'>
             <DashboardHeader
-                title="Reach out to us for personalized assistance"
-                toolText="Contact Us"
-                subtitle="Email, call, or complete the form to learn how we can solve your needs."
+                title="Manage User Feedback and Ratings"
+                toolText="Feedback Actions"
+                subtitle="View and manage feedback, including actions like delete, publish, or unpublish, and see average ratings."
             />
+
             <Card className='mt-10'>
-                <div className="w-full max-w-sm p-5">
-                    <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div className="w-full mx-auto lg:mx-0 lg:ml-7 max-w-sm p-5">
+                    <div className="flex flex-row justify-between items-center gap-4">
                         <div className="flex flex-col items-center sm:items-start">
                             <p className="text-sm font-medium text-muted-foreground">Total Feedbacks</p>
                             <p className="text-3xl font-bold">{testimonials?.length}</p>
                         </div>
-                        <div className="h-px w-full sm:h-12 sm:w-px bg-border border" />
+                        <div className="h-20  sm:h-12 sm:w-px bg-border border" />
                         <div className="flex flex-col items-center sm:items-end">
                             <p className="text-sm font-medium text-muted-foreground">Average Rating</p>
                             <div className="flex items-center gap-1">
@@ -42,7 +43,7 @@ const FeedBacksPage = () => {
                         </div>
                     </div>
                 </div>
-                <CardContent className='grid lg:grid-cols-3 grid-cols-1 gap-4'>
+                <CardContent className='grid lg:grid-cols-2 2xl:grid-cols-3 grid-cols-1 gap-4'>
                     {
                         testimonials?.data?.map((data: TestimonialProps & id, idx: number) => <TestimonialsCard isAdmin={true} idx={idx} data={data} key={idx} />)
                     }

@@ -39,7 +39,7 @@ export default function Subscription() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between h-full">
+                    <div className="flex flex-col md:flex-row items-start lg:items-center justify-between h-full">
                         <div className="w-full lg:w-2/3 p-6">
                             <motion.h2
                                 className="text-2xl font-bold text-pink-600 mb-4 text-center lg:text-left"

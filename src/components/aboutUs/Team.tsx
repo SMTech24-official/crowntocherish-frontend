@@ -68,15 +68,15 @@ export default function Team() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                 />
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:p-8 md:py-0 py-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-7 md:gap-5 md:p-8 md:py-0 py-8 items-center justify-center">
                 {teamMembers.map((member, index) => (
                     <motion.div
                         key={index}
-                        className="bg-card rounded-xl overflow-hidden shadow-lg"
+                        className="bg-card rounded-xl overflow-hidden shadow-lg w-80 lg:w-72 2xl:w-fit h-full border"
                         whileHover={{ scale: 1.04 }}
                         transition={{ type: "spring", stiffness: 200 }}
                     >
-                        <div className="relative">
+                        <div className="relative ">
                             <Image
                                 src={member.image}
                                 alt={member.name}

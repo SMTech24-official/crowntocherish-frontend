@@ -97,7 +97,7 @@ export default function Feature() {
           <SectionHeader
             toolText="Insights"
             title="Key Features & Benefits"
-            subtitle="Experience personalized, accurate, and reliable healthcare guidance tailored just for you. Our AI-driven insights offer clarity and support in understanding your health needs, ensuring a comprehensive and trustworthy experience at every step."
+            subtitle="Receive personalized, AI-driven healthcare insights that provide clarity, accuracy, and reliable support, helping you make informed decisions for a healthier and more confident journey ahead"
           />
         </motion.div>
 

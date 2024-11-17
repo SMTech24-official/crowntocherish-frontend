@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 const TextContent = () => {
     return (
         <div className='space-y-8'>
-            <div className="  div1 md:p-8 md:py-0 py-8 ">
+            <div className="lg:mt-0 md:mt-10 md:p-8 md:py-0 py-8 ">
                 <motion.div
                     className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary"
                     animate={{

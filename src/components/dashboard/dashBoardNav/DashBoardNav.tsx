@@ -42,7 +42,7 @@ export default function DashboardNav() {
         }
     }, [navRef])
 
-    // console.log(session);
+    console.log(session?.user);
 
     return (
         <div ref={navRef} className="relative z-40 h-full">
@@ -88,11 +88,11 @@ export default function DashboardNav() {
                         <div className='flex items-center space-x-4 p-2'>
                             <Avatar className=''>
                                 <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
-                                <AvatarFallback className='bg-slate-200'>UN</AvatarFallback>
+                                <AvatarFallback className='bg-slate-200'>{session?.user?.name?.slice(0,2)}</AvatarFallback>
                             </Avatar>
                             <div>
-                                <p className='font-medium'>Admin Name</p>
-                                <p className='text-xs text-gray-500 my-1'>admin@gmail.com</p>
+                                <p className='font-medium'>{session?.user?.name}</p>
+                                <p className='text-xs text-gray-500 my-1'>{session?.user?.email}</p>
                                 <div className='flex items-center space-x-1'>
                                     <span className='w-2 h-2 bg-green-500 rounded-full'></span>
                                     <p className='text-xs text-gray-500'>Active</p>

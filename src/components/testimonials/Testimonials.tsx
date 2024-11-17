@@ -34,6 +34,7 @@ export default function Testimonials() {
     const maxIndex = Math.max(0, testimonials.length - slidesToShow)
 
     const nextTestimonial = useCallback(() => {
+        console.log(maxIndex);
         setCurrentIndex(prev => Math.min(prev + 1, maxIndex))
     }, [maxIndex])
 
@@ -84,7 +85,7 @@ export default function Testimonials() {
 
                     <Button
                         onClick={previousTestimonial}
-                        className="absolute hidden md:block lg:mt-0 md:mt-6 max-w-10 md:left-4 lg:-left-6 top-1/2 -translate-y-1/2 -translate-x-4 bg-primary hover:bg-primary-dark text-primary-foreground rounded-full p-3 shadow-lg"
+                        className="absolute hidden md:block  lg:mt-0 md:mt-6 max-w-10 md:right-8 lg:-left-6 lg:top-1/2 -translate-y-1/2 -translate-x-4 bg-primary hover:bg-primary-dark text-primary-foreground rounded-full p-3 shadow-lg"
                         disabled={currentIndex === 0}
                         aria-label="Previous testimonial"
                     >
@@ -93,7 +94,7 @@ export default function Testimonials() {
 
                     <Button
                         onClick={nextTestimonial}
-                        className="absolute hidden md:block lg:mt-0 md:mt-6 md:right-4 lg:-right-6 top-1/2 -translate-y-1/2 translate-x-4 bg-primary hover:bg-primary-dark text-primary-foreground rounded-full p-3 shadow-lg"
+                        className="absolute hidden md:block  lg:mt-0 md:mt-6 md:right-3  lg:-right-6 lg:top-1/2 -translate-y-1/2 translate-x-4 bg-primary hover:bg-primary-dark text-primary-foreground rounded-full p-3 shadow-lg"
                         disabled={currentIndex === maxIndex}
                         aria-label="Next testimonial"
                     >

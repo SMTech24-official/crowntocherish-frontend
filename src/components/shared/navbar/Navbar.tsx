@@ -42,11 +42,6 @@ export default function Navbar() {
                 ? "backdrop-blur-lg  shadow-lg py-2"
                 : "backdrop-blur-lg  md:backdrop-blur-sm py-4"
         )}>
-            {/* Yellow curved accent at the top */}
-            {/* <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15]" />
-            </div> */}
-
             <div className="container">
                 <div className="flex items-center justify-between">
                     {/* Logo Section with curved yellow accent */}

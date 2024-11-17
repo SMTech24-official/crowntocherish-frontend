@@ -44,7 +44,7 @@ export default function SubscriberPage() {
                 subtitle="Reach out via email and connect with subscribers and address their needs."
             />
 
-            <div className="flex flex-col md:flex-row justify-between gap-4 md:items-center mb-6">
+            <div className="flex flex-col md:flex-row justify-between gap-4 md:items-center mb-6 lg:mt-0 md:mt-4">
                 <div className="text-lg font-semibold flex items-center gap-2">
                     Total Subscribers: {initialSubscribers?.data.length}
                 </div>

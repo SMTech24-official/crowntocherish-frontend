@@ -141,11 +141,11 @@ export default function Component() {
                         className="w-full lg:w-1/2 bg-white rounded-2xl shadow-xl overflow-hidden"
                     >
                         <div className="p-6 bg-gradient-to-r from-[#DB2777] to-[#BE185D] text-white flex items-center justify-between">
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center space-x-2 md:space-x-3">
                                 <div className="p-2 bg-white rounded-full">
-                                    <Bot className="h-6 w-6 text-[#DB2777]" />
+                                    <Bot className="md:h-6 h-5 w-5 md:w-6 text-[#DB2777]" />
                                 </div>
-                                <h2 className="text-2xl font-bold">Meds AI Assistant</h2>
+                                <h2 className="md:text-2xl text-xl text-nowrap font-bold">Meds AI Assistant</h2>
                             </div>
                             <Sparkles className="h-6 w-6 animate-pulse" />
                         </div>

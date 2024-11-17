@@ -120,9 +120,6 @@ export default function Navbar() {
                                     )}
                                 >
                                     {link.label}
-                                    {pathName !== link.link && (
-                                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#FEF08A] via-[#FDE047] to-[#FACC15] opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                                    )}
                                 </button>
                             )
                         })}

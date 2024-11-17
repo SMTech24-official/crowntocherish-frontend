@@ -22,7 +22,6 @@ export default function Footer() {
         { label: "Home", href: "/" },
         { label: "About Us", href: "/about-us" },
         { label: "How It Works", href: "./#how-it-works" },
-        { label: "Admin", href: "/admin" },
         { label: "Latest Article", href: "/articles" },
       ],
     },

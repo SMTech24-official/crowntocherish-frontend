@@ -34,7 +34,7 @@ export default function Testimonials() {
     const maxIndex = Math.max(0, testimonials.length - slidesToShow)
 
     const nextTestimonial = useCallback(() => {
-        console.log(maxIndex);
+        // console.log(maxIndex);
         setCurrentIndex(prev => Math.min(prev + 1, maxIndex))
     }, [maxIndex])
 
